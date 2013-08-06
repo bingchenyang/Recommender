@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MAMapKit.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <MAMapViewDelegate, UISearchBarDelegate>
 
 @end

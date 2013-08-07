@@ -47,6 +47,7 @@
 		469FA81117B0E40B00B34DD8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA81017B0E40B00B34DD8 /* Security.framework */; };
 		469FA81317B0E41300B34DD8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA81217B0E41300B34DD8 /* ImageIO.framework */; };
 		469FA81617B0E4A800B34DD8 /* DianPingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA81517B0E4A800B34DD8 /* DianPingEngine.m */; };
+		469FA82917B0E9CF00B34DD8 /* DianPingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,8 @@
 		469FA81217B0E41300B34DD8 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		469FA81417B0E4A700B34DD8 /* DianPingEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianPingEngine.h; sourceTree = "<group>"; };
 		469FA81517B0E4A800B34DD8 /* DianPingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingEngine.m; sourceTree = "<group>"; };
+		469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianPingAPI.h; sourceTree = "<group>"; };
+		469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 				469FA77F17B0D5B300B34DD8 /* Supporting Files */,
 				469FA81417B0E4A700B34DD8 /* DianPingEngine.h */,
 				469FA81517B0E4A800B34DD8 /* DianPingEngine.m */,
+				469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */,
+				469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */,
 			);
 			path = Recommender;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				469FA80C17B0E3E500B34DD8 /* MKNetworkOperation.m in Sources */,
 				469FA80D17B0E3E500B34DD8 /* Reachability.m in Sources */,
 				469FA81617B0E4A800B34DD8 /* DianPingEngine.m in Sources */,
+				469FA82917B0E9CF00B34DD8 /* DianPingAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,14 @@
 //
 
 #import "ViewController.h"
+#import "DianPingEngine.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *mapDisplayView;
+
+@property (nonatomic, strong) NSArray *poiList;
 @end
 
 @implementation ViewController
@@ -21,6 +24,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
      self.mapView = [[MAMapView alloc] init];
+    
+    NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
+    [headerFields setValue:@"iOS" forKey:@"x-client-identifier"];
+    DianPingEngine *engine = [[DianPingEngine alloc] initWithHostName:@"api.dianping.com"];
+    [engine findPoi:@"景点" inCity:@"上海" page:1 sort:1];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,7 +50,7 @@
 }
 
 
-#pragma mark -验证
+#pragma mark - 验证
 - (NSString *)keyForMap {
     return @"a7d8df80ccf7c8d83afdf083fdef34be";
 }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MAMapKit.h"
+#import "PoiDetailViewController.h"
 
 @interface ViewController : UIViewController <MAMapViewDelegate, UISearchBarDelegate>
 

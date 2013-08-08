@@ -49,10 +49,17 @@ typedef enum {
     DianPingSortTypeDistance = 7
 } DianPingSortType;
 
+typedef void (^DPResponseBlock)(NSArray *businesses);
+
 @interface DianPingEngine : MKNetworkEngine
+
+-(id) init;
+
 -(MKNetworkOperation *)findPoi:(NSString *)keyword
                         inCity:(NSString *)city
                           page:(NSInteger)page
-                          sort:(DianPingSortType)sort;
+                          sort:(DianPingSortType)sort
+                  onCompletion:(DPResponseBlock) completion
+                       onError:(MKNKErrorBlock) onError;
 
 @end

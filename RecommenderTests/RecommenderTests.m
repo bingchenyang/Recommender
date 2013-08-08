@@ -19,8 +19,7 @@
     [super setUp];
     
     NSMutableDictionary *headerFields = [NSMutableDictionary dictionary];
-    [headerFields setValue:@"iOS" forKey:@"x-client-identifier"];
-    engine = [[DianPingEngine alloc] initWithHostName:@"api.dianping.com" customHeaderFields:headerFields];
+
 }
 
 - (void)tearDown

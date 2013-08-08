@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4693445317B3511B00F8090A /* MapUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693445217B3511B00F8090A /* MapUtils.m */; };
+		4693445B17B377E500F8090A /* AnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693445A17B377E500F8090A /* AnnotationButton.m */; };
+		4693445E17B37F2B00F8090A /* tablet_icon_selected_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4693445C17B37F2B00F8090A /* tablet_icon_selected_arrow.png */; };
+		4693445F17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4693445D17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png */; };
+		4693446317B3802500F8090A /* PoiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693446117B3802500F8090A /* PoiDetailViewController.m */; };
+		4693446417B3802500F8090A /* PoiDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4693446217B3802500F8090A /* PoiDetailViewController.xib */; };
 		469FA77917B0D5B300B34DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77817B0D5B300B34DD8 /* UIKit.framework */; };
 		469FA77B17B0D5B300B34DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77A17B0D5B300B34DD8 /* Foundation.framework */; };
 		469FA77D17B0D5B300B34DD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77C17B0D5B300B34DD8 /* CoreGraphics.framework */; };
@@ -61,6 +67,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4693445117B3511B00F8090A /* MapUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapUtils.h; sourceTree = "<group>"; };
+		4693445217B3511B00F8090A /* MapUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapUtils.m; sourceTree = "<group>"; };
+		4693445917B377E500F8090A /* AnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationButton.h; sourceTree = "<group>"; };
+		4693445A17B377E500F8090A /* AnnotationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationButton.m; sourceTree = "<group>"; };
+		4693445C17B37F2B00F8090A /* tablet_icon_selected_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tablet_icon_selected_arrow.png; sourceTree = "<group>"; };
+		4693445D17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tablet_icon_selected_arrow@2x.png"; sourceTree = "<group>"; };
+		4693446017B3802500F8090A /* PoiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiDetailViewController.h; sourceTree = "<group>"; };
+		4693446117B3802500F8090A /* PoiDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiDetailViewController.m; sourceTree = "<group>"; };
+		4693446217B3802500F8090A /* PoiDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PoiDetailViewController.xib; sourceTree = "<group>"; };
 		469FA77517B0D5B300B34DD8 /* Recommender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recommender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469FA77817B0D5B300B34DD8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		469FA77A17B0D5B300B34DD8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -226,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				469FA82117B0E65200B34DD8 /* Libraries */,
+				4693445117B3511B00F8090A /* MapUtils.h */,
+				4693445217B3511B00F8090A /* MapUtils.m */,
 				469FA78717B0D5B300B34DD8 /* AppDelegate.h */,
 				469FA78817B0D5B300B34DD8 /* AppDelegate.mm */,
 				469FA79017B0D5B300B34DD8 /* ViewController.h */,
@@ -236,6 +253,11 @@
 				469FA81517B0E4A800B34DD8 /* DianPingEngine.m */,
 				469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */,
 				469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */,
+				4693445917B377E500F8090A /* AnnotationButton.h */,
+				4693445A17B377E500F8090A /* AnnotationButton.m */,
+				4693446017B3802500F8090A /* PoiDetailViewController.h */,
+				4693446117B3802500F8090A /* PoiDetailViewController.m */,
+				4693446217B3802500F8090A /* PoiDetailViewController.xib */,
 			);
 			path = Recommender;
 			sourceTree = "<group>";
@@ -243,6 +265,8 @@
 		469FA77F17B0D5B300B34DD8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4693445C17B37F2B00F8090A /* tablet_icon_selected_arrow.png */,
+				4693445D17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png */,
 				469FA78017B0D5B300B34DD8 /* Recommender-Info.plist */,
 				469FA78117B0D5B300B34DD8 /* InfoPlist.strings */,
 				469FA78417B0D5B300B34DD8 /* main.m */,
@@ -517,6 +541,9 @@
 				469FA78F17B0D5B300B34DD8 /* Default-568h@2x.png in Resources */,
 				469FA79517B0D5B300B34DD8 /* ViewController.xib in Resources */,
 				469FA7E917B0D73F00B34DD8 /* AMap.bundle in Resources */,
+				4693445E17B37F2B00F8090A /* tablet_icon_selected_arrow.png in Resources */,
+				4693445F17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png in Resources */,
+				4693446417B3802500F8090A /* PoiDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +592,9 @@
 				469FA80D17B0E3E500B34DD8 /* Reachability.m in Sources */,
 				469FA81617B0E4A800B34DD8 /* DianPingEngine.m in Sources */,
 				469FA82917B0E9CF00B34DD8 /* DianPingAPI.m in Sources */,
+				4693445317B3511B00F8090A /* MapUtils.m in Sources */,
+				4693445B17B377E500F8090A /* AnnotationButton.m in Sources */,
+				4693446317B3802500F8090A /* PoiDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

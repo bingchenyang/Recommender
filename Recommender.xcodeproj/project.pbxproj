@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		465633AC17C9AE0C007A2E4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465633AB17C9AE0C007A2E4A /* Storyboard.storyboard */; };
+		4667D5A217B4E98B00AD72F8 /* PoiDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667D5A117B4E98B00AD72F8 /* PoiDetailViewCell.m */; };
+		4667D5A417B4EBA500AD72F8 /* PoiDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4667D5A317B4EBA500AD72F8 /* PoiDetailViewCell.xib */; };
 		4693445317B3511B00F8090A /* MapUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693445217B3511B00F8090A /* MapUtils.m */; };
 		4693445B17B377E500F8090A /* AnnotationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693445A17B377E500F8090A /* AnnotationButton.m */; };
 		4693445E17B37F2B00F8090A /* tablet_icon_selected_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4693445C17B37F2B00F8090A /* tablet_icon_selected_arrow.png */; };
 		4693445F17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4693445D17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png */; };
 		4693446317B3802500F8090A /* PoiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693446117B3802500F8090A /* PoiDetailViewController.m */; };
-		4693446417B3802500F8090A /* PoiDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4693446217B3802500F8090A /* PoiDetailViewController.xib */; };
+		4693446D17B39A4000F8090A /* DPPoiAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693446C17B39A3F00F8090A /* DPPoiAnnotation.m */; };
 		469FA77917B0D5B300B34DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77817B0D5B300B34DD8 /* UIKit.framework */; };
 		469FA77B17B0D5B300B34DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77A17B0D5B300B34DD8 /* Foundation.framework */; };
 		469FA77D17B0D5B300B34DD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77C17B0D5B300B34DD8 /* CoreGraphics.framework */; };
@@ -23,7 +26,6 @@
 		469FA78D17B0D5B300B34DD8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469FA78C17B0D5B300B34DD8 /* Default@2x.png */; };
 		469FA78F17B0D5B300B34DD8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 469FA78E17B0D5B300B34DD8 /* Default-568h@2x.png */; };
 		469FA79217B0D5B300B34DD8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA79117B0D5B300B34DD8 /* ViewController.m */; };
-		469FA79517B0D5B300B34DD8 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 469FA79317B0D5B300B34DD8 /* ViewController.xib */; };
 		469FA79D17B0D5B300B34DD8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA79C17B0D5B300B34DD8 /* SenTestingKit.framework */; };
 		469FA79E17B0D5B300B34DD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77817B0D5B300B34DD8 /* UIKit.framework */; };
 		469FA79F17B0D5B300B34DD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA77A17B0D5B300B34DD8 /* Foundation.framework */; };
@@ -67,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		465633AB17C9AE0C007A2E4A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		4667D5A017B4E98B00AD72F8 /* PoiDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiDetailViewCell.h; sourceTree = "<group>"; };
+		4667D5A117B4E98B00AD72F8 /* PoiDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiDetailViewCell.m; sourceTree = "<group>"; };
+		4667D5A317B4EBA500AD72F8 /* PoiDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PoiDetailViewCell.xib; sourceTree = "<group>"; };
 		4693445117B3511B00F8090A /* MapUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapUtils.h; sourceTree = "<group>"; };
 		4693445217B3511B00F8090A /* MapUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapUtils.m; sourceTree = "<group>"; };
 		4693445917B377E500F8090A /* AnnotationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationButton.h; sourceTree = "<group>"; };
@@ -75,7 +81,8 @@
 		4693445D17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tablet_icon_selected_arrow@2x.png"; sourceTree = "<group>"; };
 		4693446017B3802500F8090A /* PoiDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiDetailViewController.h; sourceTree = "<group>"; };
 		4693446117B3802500F8090A /* PoiDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiDetailViewController.m; sourceTree = "<group>"; };
-		4693446217B3802500F8090A /* PoiDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PoiDetailViewController.xib; sourceTree = "<group>"; };
+		4693446B17B39A3F00F8090A /* DPPoiAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPPoiAnnotation.h; sourceTree = "<group>"; };
+		4693446C17B39A3F00F8090A /* DPPoiAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPPoiAnnotation.m; sourceTree = "<group>"; };
 		469FA77517B0D5B300B34DD8 /* Recommender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recommender.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469FA77817B0D5B300B34DD8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		469FA77A17B0D5B300B34DD8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,7 +98,6 @@
 		469FA78E17B0D5B300B34DD8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		469FA79017B0D5B300B34DD8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		469FA79117B0D5B300B34DD8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		469FA79417B0D5B300B34DD8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		469FA79B17B0D5B300B34DD8 /* RecommenderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecommenderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		469FA79C17B0D5B300B34DD8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		469FA7A417B0D5B300B34DD8 /* RecommenderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RecommenderTests-Info.plist"; sourceTree = "<group>"; };
@@ -198,6 +204,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		465633AD17C9B136007A2E4A /* Browse Mode */ = {
+			isa = PBXGroup;
+			children = (
+				4667D5A017B4E98B00AD72F8 /* PoiDetailViewCell.h */,
+				4667D5A117B4E98B00AD72F8 /* PoiDetailViewCell.m */,
+				4693446017B3802500F8090A /* PoiDetailViewController.h */,
+				4693446117B3802500F8090A /* PoiDetailViewController.m */,
+				4693445917B377E500F8090A /* AnnotationButton.h */,
+				4693445A17B377E500F8090A /* AnnotationButton.m */,
+				4693446B17B39A3F00F8090A /* DPPoiAnnotation.h */,
+				4693446C17B39A3F00F8090A /* DPPoiAnnotation.m */,
+				469FA79017B0D5B300B34DD8 /* ViewController.h */,
+				469FA79117B0D5B300B34DD8 /* ViewController.m */,
+			);
+			name = "Browse Mode";
+			sourceTree = "<group>";
+		};
 		469FA76C17B0D5B300B34DD8 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +228,7 @@
 				469FA7A217B0D5B300B34DD8 /* RecommenderTests */,
 				469FA77717B0D5B300B34DD8 /* Frameworks */,
 				469FA77617B0D5B300B34DD8 /* Products */,
+				465633AB17C9AE0C007A2E4A /* Storyboard.storyboard */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,24 +264,18 @@
 		469FA77E17B0D5B300B34DD8 /* Recommender */ = {
 			isa = PBXGroup;
 			children = (
+				465633AD17C9B136007A2E4A /* Browse Mode */,
 				469FA82117B0E65200B34DD8 /* Libraries */,
 				4693445117B3511B00F8090A /* MapUtils.h */,
 				4693445217B3511B00F8090A /* MapUtils.m */,
 				469FA78717B0D5B300B34DD8 /* AppDelegate.h */,
 				469FA78817B0D5B300B34DD8 /* AppDelegate.mm */,
-				469FA79017B0D5B300B34DD8 /* ViewController.h */,
-				469FA79117B0D5B300B34DD8 /* ViewController.m */,
-				469FA79317B0D5B300B34DD8 /* ViewController.xib */,
 				469FA77F17B0D5B300B34DD8 /* Supporting Files */,
 				469FA81417B0E4A700B34DD8 /* DianPingEngine.h */,
 				469FA81517B0E4A800B34DD8 /* DianPingEngine.m */,
 				469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */,
 				469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */,
-				4693445917B377E500F8090A /* AnnotationButton.h */,
-				4693445A17B377E500F8090A /* AnnotationButton.m */,
-				4693446017B3802500F8090A /* PoiDetailViewController.h */,
-				4693446117B3802500F8090A /* PoiDetailViewController.m */,
-				4693446217B3802500F8090A /* PoiDetailViewController.xib */,
+				4667D5A317B4EBA500AD72F8 /* PoiDetailViewCell.xib */,
 			);
 			path = Recommender;
 			sourceTree = "<group>";
@@ -539,11 +557,11 @@
 				469FA78B17B0D5B300B34DD8 /* Default.png in Resources */,
 				469FA78D17B0D5B300B34DD8 /* Default@2x.png in Resources */,
 				469FA78F17B0D5B300B34DD8 /* Default-568h@2x.png in Resources */,
-				469FA79517B0D5B300B34DD8 /* ViewController.xib in Resources */,
 				469FA7E917B0D73F00B34DD8 /* AMap.bundle in Resources */,
 				4693445E17B37F2B00F8090A /* tablet_icon_selected_arrow.png in Resources */,
 				4693445F17B37F2B00F8090A /* tablet_icon_selected_arrow@2x.png in Resources */,
-				4693446417B3802500F8090A /* PoiDetailViewController.xib in Resources */,
+				4667D5A417B4EBA500AD72F8 /* PoiDetailViewCell.xib in Resources */,
+				465633AC17C9AE0C007A2E4A /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +613,8 @@
 				4693445317B3511B00F8090A /* MapUtils.m in Sources */,
 				4693445B17B377E500F8090A /* AnnotationButton.m in Sources */,
 				4693446317B3802500F8090A /* PoiDetailViewController.m in Sources */,
+				4693446D17B39A4000F8090A /* DPPoiAnnotation.m in Sources */,
+				4667D5A217B4E98B00AD72F8 /* PoiDetailViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,14 +643,6 @@
 				469FA78217B0D5B300B34DD8 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		469FA79317B0D5B300B34DD8 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				469FA79417B0D5B300B34DD8 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 		469FA7A517B0D5B300B34DD8 /* InfoPlist.strings */ = {

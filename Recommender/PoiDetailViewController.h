@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MAMapKit.h"
+#import "DPPoiAnnotation.h"
 
 @interface PoiDetailViewController : UITableViewController
-@property (nonatomic, strong) id<MAAnnotation> annotation;
+@property (nonatomic, strong)  DPPoiAnnotation *annotation;
 @end

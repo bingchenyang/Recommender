@@ -7,9 +7,13 @@
 //
 
 #import "PoiDetailViewController.h"
+#import "DianPingEngine.h"
+#import "PoiDetailViewCell.h"
 
 @interface PoiDetailViewController ()
-
+@property (strong, nonatomic) MKNetworkEngine *engineForImg;
+@property (strong, nonatomic) NSDictionary *poi;
+@property (strong, nonatomic) UIImage *photo;
 @end
 
 @implementation PoiDetailViewController
@@ -32,10 +36,40 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.engineForImg = [[MKNetworkEngine alloc] initWithHostName:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.navigationItem.title = [self.annotation title];
+    UIView *originalTitleView = self.navigationItem.titleView;
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner startAnimating];
+    self.navigationItem.titleView = spinner;
+    if (self.annotation != nil) {
+        [[DianPingEngine sharedEngine] findPoiWithPid:self.annotation.pid onCompletion:^(NSDictionary *poi) {
+            self.navigationItem.titleView = originalTitleView;
+            self.navigationItem.title = self.annotation.title;
+            self.poi = poi;
+            
+            MKNetworkOperation *op = [self.engineForImg operationWithURLString:[self.poi objectForKey:@"s_photo_url"]];
+            
+            [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+                self.photo = [UIImage imageWithData:completedOperation.responseData];
+                [self.tableView reloadData];
+
+            } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+                ;
+            }];
+            [self.engineForImg enqueueOperation:op];
+            
+            [self.tableView reloadData];
+        } onError:^(NSError *error) {
+            ;
+        }];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,31 +83,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PoiDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoCell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PoiDetailViewCell" owner:nil options:nil];
+
+        for(id currentObject in topLevelObjects) {
+
+            if([currentObject isKindOfClass:[PoiDetailViewCell class]]) {
+                cell = (PoiDetailViewCell *)currentObject;
+                break;
+            }
+        }
+
     }
-    
-    // Configure the cell...
+    cell.titleLabel.text = [self.poi valueForKey:@"name"];
+    cell.subtitleLabel.text = [self.poi valueForKey:@"address"];
+    if (self.photo) {
+        cell.photoView.image = self.photo;
+    }
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 150;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

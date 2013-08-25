@@ -50,10 +50,11 @@ typedef enum {
 } DianPingSortType;
 
 typedef void (^DPResponseBlock)(NSArray *businesses);
+typedef void (^DPSinglePoiBlock)(NSDictionary *poi);
 
 @interface DianPingEngine : MKNetworkEngine
 
--(id) init;
++ (DianPingEngine *) sharedEngine;
 
 -(MKNetworkOperation *)findPoi:(NSString *)keyword
                         inCity:(NSString *)city
@@ -61,5 +62,9 @@ typedef void (^DPResponseBlock)(NSArray *businesses);
                           sort:(DianPingSortType)sort
                   onCompletion:(DPResponseBlock) completion
                        onError:(MKNKErrorBlock) onError;
+
+-(MKNetworkOperation *)findPoiWithPid:(NSString *)pid
+                         onCompletion:(DPSinglePoiBlock) completion
+                              onError:(MKNKErrorBlock) onError;
 
 @end

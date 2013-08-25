@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MAMapKit.h"
+#import "DPPoiAnnotation.h"
 
 @interface AnnotationButton : UIButton
-@property (nonatomic, strong) id<MAAnnotation> annotation;
+@property (nonatomic, strong) DPPoiAnnotation *annotation;
 
 - (id)init;
 

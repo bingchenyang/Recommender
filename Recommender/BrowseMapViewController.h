@@ -10,6 +10,7 @@
 #import "MAMapKit.h"
 #import "PoiDetailViewController.h"
 
-@interface ViewController : UIViewController <MAMapViewDelegate, UISearchBarDelegate>
+@interface BrowseMapViewController : UIViewController <MAMapViewDelegate, UISearchBarDelegate>
+
 
 @end

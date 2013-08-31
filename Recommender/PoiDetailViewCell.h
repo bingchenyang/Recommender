@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PoiDetailViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *photoView;
+
 
 @end

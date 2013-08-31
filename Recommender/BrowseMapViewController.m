@@ -6,31 +6,36 @@
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BrowseMapViewController.h"
 #import "DianPingEngine.h"
 #import "MapUtils.h"
 #import "AnnotationButton.h"
 #import "DPPoiAnnotation.h"
+#import "HelperMethods.h"
 
 #define kDianPingShowPoiDetail @"DianPingShowPoiDetail"
 
-@interface ViewController ()
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@interface BrowseMapViewController ()
 @property (nonatomic, strong) MAMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIView *mapDisplayView;
+@property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) MKNetworkEngine *engineForImg;
 @end
 
-@implementation ViewController
+@implementation BrowseMapViewController
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-     self.mapView = [[MAMapView alloc] init];
     
+    [self loadDisplayView];
+}
+
+- (void)loadDisplayView {
+    self.mapView = [[MAMapView alloc] init];
+
     DianPingEngine *engine = [DianPingEngine sharedEngine];
     [engine findPoi:@"景点" inCity:@"上海" page:1 sort:DianPingSortTypeDefault onCompletion:^(NSArray *businesses) {
         for (NSDictionary *business in businesses) {
@@ -47,18 +52,22 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.searchBar.delegate = self;
-    self.searchBar.showsCancelButton = YES;
     
-    self.mapView.frame = self.mapDisplayView.bounds;
+    self.mapView.frame = self.view.bounds;
     self.mapView.delegate = self;
-    [self.mapDisplayView addSubview:self.mapView];
+    [self.view addSubview:self.mapView];
     
-    self.navigationController.navigationBarHidden = YES;
+    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M"];
+    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M"];
+    //self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M --> viewDidAppear"];
+    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M --> viewDidAppear"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.searchBar.delegate = nil;
     self.mapView.delegate = nil;
     self.navigationController.navigationBarHidden = NO;
 }
@@ -72,28 +81,6 @@
 #pragma mark - 验证
 - (NSString *)keyForMap {
     return @"a7d8df80ccf7c8d83afdf083fdef34be";
-}
-
-#pragma mark - UISearchBarDelegate Methods
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    
-    DianPingEngine *engine = [DianPingEngine sharedEngine];
-    [engine findPoi:[NSString stringWithFormat:@"景点 %@", searchBar.text] inCity:@"上海" page:1 sort:DianPingSortTypeDefault onCompletion:^(NSArray *businesses) {
-        for (NSDictionary *business in businesses) {
-            MAPointAnnotation *annotation = [self annotationForBusiness:business];
-            [self.mapView addAnnotation:annotation];
-        }
-        [MapUtils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
-    } onError:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    
-    [searchBar resignFirstResponder];
 }
 
 #pragma mark - Helper Methods

@@ -147,6 +147,7 @@
 
 #pragma mark - PoiStreamDelegate
 - (void)PoiStreamDelegateFetchPoisDidFinish:(PoiStream *)poiStream {
+    self.poiStream = poiStream;
     for (Poi *poi in poiStream.pois) {
         DPPoiAnnotation *annotation = [self annotationForPoi:poi];
         [self.mapView addAnnotation:annotation];

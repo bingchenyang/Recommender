@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PoiStream.h"
 
-@interface BrowseTableViewController : UITableViewController
+@interface BrowseTableViewController : UITableViewController <PoiStreamDelegate>
+
+@property (nonatomic, strong) PoiStream *poiStream;
 
 @end

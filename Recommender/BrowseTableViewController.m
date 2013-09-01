@@ -7,6 +7,8 @@
 //
 
 #import "BrowseTableViewController.h"
+#import "BrowsePoiCell.h"
+#import "ImageCacheCenter.h"
 
 @interface BrowseTableViewController ()
 
@@ -32,6 +34,20 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.poiStream = [[PoiStream alloc] init];
+    self.poiStream.delegate = self;
+    [self.refreshControl beginRefreshing];
+    [self.poiStream fetchPois];
+    
+    [self.tableView registerClass:[BrowsePoiCell class] forCellReuseIdentifier:@"BrowsePoiCell"];
+}
+
+- (void)refresh {
+    [self.refreshControl beginRefreshing];
+    [self.poiStream fetchPois];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,26 +60,43 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.poiStream.pois count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"BrowsePoiCell";
+    BrowsePoiCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    Poi *poiAtThisRow = [self.poiStream.pois objectAtIndex:indexPath.row];
+    cell.name = poiAtThisRow.name;
+    cell.description = poiAtThisRow.address;
+    UIImage *photo = [[ImageCacheCenter defaultCacheCenter] imageForKey:poiAtThisRow.smallPhotoUrl];
+    if (photo != nil) {
+        cell.photo = photo;
+    }
+    else {
+        cell.photo = [UIImage imageNamed:@"PoiDefaultIcon.png"];
+    }
+    
+    UIImage *rating = [[ImageCacheCenter defaultCacheCenter] imageForKey:poiAtThisRow.ratingSmallImageUrl];
+    if (rating != nil) {
+        cell.rating = rating;
+    }
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120;
 }
 
 /*
@@ -116,6 +149,13 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - PoiStreamDelegate
+- (void)PoiStreamDelegateFetchPoisDidFinish:(PoiStream *)poiStream {
+    self.poiStream = poiStream;
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 @end

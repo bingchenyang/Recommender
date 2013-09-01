@@ -17,8 +17,6 @@
 
 @interface BrowseMapViewController ()
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) MKNetworkEngine *engineForImg;
 @end
 
@@ -29,23 +27,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [self loadDisplayView];
-}
-
-- (void)loadDisplayView {
     self.mapView = [[MAMapView alloc] init];
-
-    DianPingEngine *engine = [DianPingEngine sharedEngine];
-    [engine findPoi:@"景点" inCity:@"上海" page:1 sort:DianPingSortTypeDefault onCompletion:^(NSArray *businesses) {
-        for (NSDictionary *business in businesses) {
-            DPPoiAnnotation *annotation = [self annotationForBusiness:business];
-            [self.mapView addAnnotation:annotation];
-        }
-        [MapUtils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
-    } onError:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
+    
+    self.poiStream = [[PoiStream alloc] init];
+    self.poiStream.delegate = self;
+    [self.poiStream fetchPois];
     
     self.engineForImg = [[MKNetworkEngine alloc] init];
 }
@@ -98,11 +84,22 @@
     return annotation;
 }
 
+- (DPPoiAnnotation *)annotationForPoi:(Poi *)poi {
+    DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
+    annotation.coordinate = CLLocationCoordinate2DMake(poi.latitude, poi.longitude);
+    annotation.title = poi.name;
+    annotation.subtitle = poi.address;
+    annotation.photoURL = poi.smallPhotoUrl;
+    annotation.ratingImgURL = poi.ratingSmallImageUrl;
+    
+    return annotation;
+}
+
 - (void) showPoiDetail:(id) sender {
-    AnnotationButton *button = (AnnotationButton *)sender;
-    PoiDetailViewController *pDVC = [[PoiDetailViewController alloc]initWithNibName:@"PoiDetailViewController" bundle:nil];
-    pDVC.annotation = button.annotation;
-    [self.navigationController pushViewController:pDVC animated:YES];
+//    AnnotationButton *button = (AnnotationButton *)sender;
+//    PoiDetailViewController *pDVC = [[PoiDetailViewController alloc]initWithNibName:@"PoiDetailViewController" bundle:nil];
+//    pDVC.annotation = button.annotation;
+//    [self.navigationController pushViewController:pDVC animated:YES];
 }
 
 #pragma mark - MAMapViewDelegate
@@ -146,6 +143,15 @@
     }
     
     return nil;
+}
+
+#pragma mark - PoiStreamDelegate
+- (void)PoiStreamDelegateFetchPoisDidFinish:(PoiStream *)poiStream {
+    for (Poi *poi in poiStream.pois) {
+        DPPoiAnnotation *annotation = [self annotationForPoi:poi];
+        [self.mapView addAnnotation:annotation];
+    }
+    [MapUtils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
 }
 
 @end

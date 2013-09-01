@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MAMapKit.h"
-#import "PoiDetailViewController.h"
+#import "PoiStream.h"
 
-@interface BrowseMapViewController : UIViewController <MAMapViewDelegate, UISearchBarDelegate>
+@interface BrowseMapViewController : UIViewController <MAMapViewDelegate, PoiStreamDelegate>
 
+@property (nonatomic, strong) PoiStream *poiStream;
 
 @end

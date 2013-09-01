@@ -8,6 +8,7 @@
 
 #import "ImageCacheCenter.h"
 
+
 @interface ImageCacheCenter ()
 @property (nonatomic, strong) NSMutableDictionary *imageHouse;
 @property NSLock *accessLock;
@@ -45,8 +46,24 @@
     return image;
 }
 
-- (UIImage *)fetchImageWithUrl:(NSString *)url {
+- (UIImage *)fetchImageWithUrl:(NSString *)url onCompletion:(CacheComletionBlock)completionBlock{
+    UIImage *image = [self imageForKey:url];
+    if (image != nil) {
+        return image;
+    }
     
+    MKNetworkEngine *engine = [[MKNetworkEngine alloc] initWithHostName:nil];
+    MKNetworkOperation *fetchImageOp = [engine operationWithURLString:url];
+    [fetchImageOp addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        completionBlock();
+        [self setImage:completedOperation.responseImage ForKey:url];
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        ;
+    }];
+    
+    [engine enqueueOperation:fetchImageOp];
+    
+    return image;
 }
 
 @end

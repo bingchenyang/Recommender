@@ -9,6 +9,9 @@
 // 
 
 #import <Foundation/Foundation.h>
+#import "DianPingEngine.h"
+
+typedef void (^CacheComletionBlock)(void);
 
 @interface ImageCacheCenter : NSObject
 
@@ -17,6 +20,6 @@
 - (void)setImage:(UIImage *)image ForKey:(NSString *)key;
 - (UIImage *)imageForKey:(NSString *)key;
 
-- (UIImage *)fetchImageWithUrl:(NSString *)url;
+- (UIImage *)fetchImageWithUrl:(NSString *)url onCompletion:(CacheComletionBlock)completionBlock;
 
 @end

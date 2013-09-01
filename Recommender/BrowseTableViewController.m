@@ -79,7 +79,10 @@
     Poi *poiAtThisRow = [self.poiStream.pois objectAtIndex:indexPath.row];
     cell.name = poiAtThisRow.name;
     cell.description = poiAtThisRow.address;
-    UIImage *photo = [[ImageCacheCenter defaultCacheCenter] imageForKey:poiAtThisRow.smallPhotoUrl];
+    UIImage *photo = [[ImageCacheCenter defaultCacheCenter] fetchImageWithUrl:poiAtThisRow.smallPhotoUrl onCompletion:^{
+        //[tableView reloadRowsAtIndexPaths:@[@(indexPath.row)] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView reloadData];
+    }];
     if (photo != nil) {
         cell.photo = photo;
     }

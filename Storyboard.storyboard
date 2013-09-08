@@ -22,13 +22,13 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ug2-pf-Sv9">
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="125" id="UGb-3E-tYh"/>
                                                 <constraint firstAttribute="height" constant="25" id="c1P-0n-TA4"/>
-                                                <constraint firstAttribute="width" constant="160" id="vZ4-ws-iPZ"/>
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Lo-FE-eEu">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="160" id="5od-yT-35T"/>
+                                                <constraint firstAttribute="width" constant="160" id="TER-f9-A9j"/>
                                                 <constraint firstAttribute="height" constant="120" id="ZcW-y8-Ftk"/>
                                             </constraints>
                                         </imageView>
@@ -50,14 +50,14 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="AhW-bW-KtZ" firstAttribute="top" secondItem="HUR-P3-9gB" secondAttribute="top" constant="18" id="MMX-Eg-M1c"/>
-                                    <constraint firstItem="web-Rn-wNF" firstAttribute="leading" secondItem="6Lo-FE-eEu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="YdA-5s-NGj"/>
-                                    <constraint firstItem="AhW-bW-KtZ" firstAttribute="leading" secondItem="6Lo-FE-eEu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="bjC-cY-KWq"/>
-                                    <constraint firstItem="Ug2-pf-Sv9" firstAttribute="top" secondItem="AhW-bW-KtZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gao-Go-h5F"/>
-                                    <constraint firstAttribute="bottom" secondItem="web-Rn-wNF" secondAttribute="bottom" constant="11" id="jIm-3q-Urf"/>
+                                    <constraint firstItem="Ug2-pf-Sv9" firstAttribute="leading" secondItem="6Lo-FE-eEu" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="CG5-wI-0Wt"/>
+                                    <constraint firstItem="6Lo-FE-eEu" firstAttribute="top" secondItem="HUR-P3-9gB" secondAttribute="top" constant="1" id="O3J-E0-kMX"/>
+                                    <constraint firstItem="AhW-bW-KtZ" firstAttribute="leading" secondItem="web-Rn-wNF" secondAttribute="leading" type="default" id="O6L-Rs-G6A"/>
+                                    <constraint firstItem="web-Rn-wNF" firstAttribute="top" secondItem="AhW-bW-KtZ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RC7-QH-qCp"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ug2-pf-Sv9" secondAttribute="bottom" constant="16" id="WRA-dI-8gK"/>
+                                    <constraint firstItem="6Lo-FE-eEu" firstAttribute="top" secondItem="AhW-bW-KtZ" secondAttribute="top" type="default" id="bHG-bF-U6U"/>
+                                    <constraint firstAttribute="trailing" secondItem="AhW-bW-KtZ" secondAttribute="trailing" constant="110" id="d32-aR-o93"/>
                                     <constraint firstItem="6Lo-FE-eEu" firstAttribute="leading" secondItem="HUR-P3-9gB" secondAttribute="leading" type="default" id="lV0-X1-DhZ"/>
-                                    <constraint firstItem="Ug2-pf-Sv9" firstAttribute="trailing" secondItem="HUR-P3-9gB" secondAttribute="trailing" type="default" id="s2c-74-TNc"/>
-                                    <constraint firstItem="6Lo-FE-eEu" firstAttribute="top" secondItem="HUR-P3-9gB" secondAttribute="top" constant="1" id="vH9-tY-4OJ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="web-Rn-wNF" id="3qF-0o-eqO"/>
@@ -84,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDg-Fj-N04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562" y="-1114"/>
+            <point key="canvasLocation" x="447" y="-1037"/>
         </scene>
         <!--Browse Map View Controller-->
         <scene sceneID="4YG-WU-mXM">
@@ -98,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sji-eT-yFi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966" y="-1114"/>
+            <point key="canvasLocation" x="873" y="-1037"/>
         </scene>
         <!--Browse Root View Controller-->
         <scene sceneID="mjW-FG-0RB">
@@ -130,12 +130,78 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapOrTable" destination="SZR-tQ-IZd" id="pMY-Tw-plj"/>
-                        <segue destination="Rqw-wy-krq" kind="push" id="0tE-Iw-apa"/>
+                        <segue destination="TAI-uV-8Iv" kind="push" identifier="toPoiDetailWeb" id="Vko-dr-Gbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMw-pD-RdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="903" y="-425"/>
+            <point key="canvasLocation" x="663" y="-437"/>
+        </scene>
+        <!--Browse Web View Controller-->
+        <scene sceneID="E7I-4g-zzE">
+            <objects>
+                <viewController id="TAI-uV-8Iv" customClass="BrowseWebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A8K-w3-ydZ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvl-SQ-jd7">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qvl-SQ-jd7" firstAttribute="trailing" secondItem="A8K-w3-ydZ" secondAttribute="trailing" type="default" id="P3R-UM-vzh"/>
+                            <constraint firstItem="qvl-SQ-jd7" firstAttribute="top" secondItem="A8K-w3-ydZ" secondAttribute="top" type="default" id="UBP-QA-Fnz"/>
+                            <constraint firstItem="qvl-SQ-jd7" firstAttribute="bottom" secondItem="A8K-w3-ydZ" secondAttribute="bottom" type="default" id="tcW-I2-23A"/>
+                            <constraint firstItem="qvl-SQ-jd7" firstAttribute="leading" secondItem="A8K-w3-ydZ" secondAttribute="leading" type="default" id="zUl-1I-tOW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="RTX-ff-Zjb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="3FR-80-hKw">
+                            <connections>
+                                <action selector="addToList:" destination="TAI-uV-8Iv" id="KGC-D6-Dl3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="qvl-SQ-jd7" id="dj2-kw-ru2"/>
+                        <segue destination="RFx-UD-epG" kind="push" identifier="toPlanListView" id="so0-VJ-Fpy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sIv-xe-eqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="-437"/>
+        </scene>
+        <!--Plan List View Controller-->
+        <scene sceneID="38A-GA-cgZ">
+            <objects>
+                <tableViewController id="RFx-UD-epG" customClass="PlanListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pL7-NV-j2C">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="lCb-X3-j7W">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RFx-UD-epG" id="XFA-HS-Pye"/>
+                            <outlet property="delegate" destination="RFx-UD-epG" id="Vgp-h6-nWW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="No2-hv-bUm"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pe4-ni-cYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="-437"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="j1b-DJ-bhH">
@@ -185,7 +251,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1540" y="-1090"/>
+            <point key="canvasLocation" x="1572" y="-1052"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="76M-A2-m0p">
@@ -230,12 +296,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbU-ev-RpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="387" y="1014"/>
+            <point key="canvasLocation" x="141" y="892"/>
         </scene>
-        <!--Browse Map View Controller - 出游模式-->
+        <!--View Controller - 出游模式-->
         <scene sceneID="rvy-nT-pU2">
             <objects>
-                <viewController id="Zty-aJ-MTP" customClass="BrowseMapViewController" sceneMemberID="viewController">
+                <viewController id="Zty-aJ-MTP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="71Y-MD-jUn">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -245,37 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ra-O3-mMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="387" y="300"/>
-        </scene>
-        <!--Poi Detail View Controller-->
-        <scene sceneID="CFs-Kk-2Ew">
-            <objects>
-                <tableViewController id="Rqw-wy-krq" customClass="PoiDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="240" sectionHeaderHeight="22" sectionFooterHeight="22" id="goQ-I8-Zcw">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PhotoCell" rowHeight="240" id="f4P-v4-3L8" customClass="PoiDetailViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="240"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Rqw-wy-krq" id="byB-jf-9lL"/>
-                            <outlet property="delegate" destination="Rqw-wy-krq" id="MG3-4x-W5U"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="gus-87-rAE"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RXT-cm-g2F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1540" y="-425"/>
+            <point key="canvasLocation" x="141" y="208"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vp3-8A-kM6">
@@ -315,9 +351,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W31-ge-PCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="-425"/>
+            <point key="canvasLocation" x="141" y="-437"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="BrowseMapViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BrowseMapViewController.h"/>
+        </class>
+        <class className="BrowsePoiCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BrowsePoiCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="descriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLable" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="ratingView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="BrowseRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BrowseRootViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onChangeMapOrTableView:"/>
+                <relationship kind="outlet" name="mapOrTable" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="BrowseTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BrowseTableViewController.h"/>
+        </class>
+        <class className="BrowseWebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BrowseWebViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addToList:"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlanListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlanListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneClicked:"/>
+                <relationship kind="outlet" name="toolBar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

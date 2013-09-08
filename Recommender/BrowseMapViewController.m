@@ -12,6 +12,7 @@
 #import "AnnotationButton.h"
 #import "DPPoiAnnotation.h"
 #import "HelperMethods.h"
+#import "BrowseWebViewController.h"
 
 #define kDianPingShowPoiDetail @"DianPingShowPoiDetail"
 
@@ -100,6 +101,8 @@
 //    PoiDetailViewController *pDVC = [[PoiDetailViewController alloc]initWithNibName:@"PoiDetailViewController" bundle:nil];
 //    pDVC.annotation = button.annotation;
 //    [self.navigationController pushViewController:pDVC animated:YES];
+    
+    BrowseWebViewController *webViewController = [[BrowseWebViewController alloc] init];
 }
 
 #pragma mark - MAMapViewDelegate

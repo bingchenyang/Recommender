@@ -20,7 +20,7 @@ typedef enum {
 @interface BrowseRootViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapOrTable;
 @property (strong, nonatomic) UIViewController *currentViewController;
-@property (strong, nonatomic) UITableViewController *browseTableViewController;
+@property (strong, nonatomic) BrowseTableViewController *browseTableViewController;
 @property (strong, nonatomic) BrowseMapViewController *browseMapViewController;
 
 - (IBAction)onChangeMapOrTableView:(id)sender;

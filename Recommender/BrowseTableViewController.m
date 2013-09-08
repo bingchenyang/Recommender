@@ -9,6 +9,8 @@
 #import "BrowseTableViewController.h"
 #import "BrowsePoiCell.h"
 #import "ImageCacheCenter.h"
+#import "BrowseWebViewController.h"
+#import "BrowseRootViewController.h"
 
 @interface BrowseTableViewController ()
 
@@ -79,9 +81,9 @@
     Poi *poiAtThisRow = [self.poiStream.pois objectAtIndex:indexPath.row];
     cell.name = poiAtThisRow.name;
     cell.description = poiAtThisRow.address;
+    
     UIImage *photo = [[ImageCacheCenter defaultCacheCenter] fetchImageWithUrl:poiAtThisRow.smallPhotoUrl onCompletion:^{
-        //[tableView reloadRowsAtIndexPaths:@[@(indexPath.row)] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [tableView reloadData];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
     if (photo != nil) {
         cell.photo = photo;
@@ -90,7 +92,9 @@
         cell.photo = [UIImage imageNamed:@"PoiDefaultIcon.png"];
     }
     
-    UIImage *rating = [[ImageCacheCenter defaultCacheCenter] imageForKey:poiAtThisRow.ratingSmallImageUrl];
+    UIImage *rating = [[ImageCacheCenter defaultCacheCenter] fetchImageWithUrl:poiAtThisRow.ratingSmallImageUrl onCompletion:^{
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
     if (rating != nil) {
         cell.rating = rating;
     }
@@ -145,13 +149,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+//    BrowseWebViewController *webViewController = [[BrowseWebViewController alloc] init];
+//    webViewController.poi = [self.poiStream.pois objectAtIndex:indexPath.row];
+//    [self.navigationController pushViewController:webViewController animated:YES];
+    BrowseRootViewController *parentVC = (BrowseRootViewController *)self.parentViewController;
+    [parentVC performSegueWithIdentifier:@"toPoiDetailWeb" sender:indexPath];
 }
 
 #pragma mark - PoiStreamDelegate

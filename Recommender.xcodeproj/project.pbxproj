@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		465633AC17C9AE0C007A2E4A /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 465633AB17C9AE0C007A2E4A /* Storyboard.storyboard */; };
+		46650B2017D869AE000464B5 /* BrowseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46650B1F17D869AE000464B5 /* BrowseWebViewController.m */; };
+		46650B3017D870EA000464B5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 46650B2F17D870EA000464B5 /* MBProgressHUD.m */; };
+		46650B3417D87FB8000464B5 /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46650B3317D87FB8000464B5 /* PlanListViewController.m */; };
 		46712F5817D30F1400516121 /* BrowsePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F5717D30F1400516121 /* BrowsePoiCell.m */; };
 		46712F6217D327C700516121 /* PoiDefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46712F6117D327C700516121 /* PoiDefaultIcon.png */; };
 		46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F6417D3283100516121 /* ImageCacheCenter.m */; };
@@ -76,6 +79,12 @@
 
 /* Begin PBXFileReference section */
 		465633AB17C9AE0C007A2E4A /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		46650B1E17D869AE000464B5 /* BrowseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseWebViewController.h; sourceTree = "<group>"; };
+		46650B1F17D869AE000464B5 /* BrowseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseWebViewController.m; sourceTree = "<group>"; };
+		46650B2E17D870EA000464B5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		46650B2F17D870EA000464B5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		46650B3217D87FB8000464B5 /* PlanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanListViewController.h; sourceTree = "<group>"; };
+		46650B3317D87FB8000464B5 /* PlanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanListViewController.m; sourceTree = "<group>"; };
 		46712F5617D30F1300516121 /* BrowsePoiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowsePoiCell.h; sourceTree = "<group>"; };
 		46712F5717D30F1400516121 /* BrowsePoiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowsePoiCell.m; sourceTree = "<group>"; };
 		46712F6117D327C700516121 /* PoiDefaultIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoiDefaultIcon.png; sourceTree = "<group>"; };
@@ -235,8 +244,28 @@
 				4680AC5917D1ACFB00861866 /* BrowseRootViewController.m */,
 				4680AC5B17D1B9F900861866 /* BrowseTableViewController.h */,
 				4680AC5C17D1B9F900861866 /* BrowseTableViewController.m */,
+				46650B1E17D869AE000464B5 /* BrowseWebViewController.h */,
+				46650B1F17D869AE000464B5 /* BrowseWebViewController.m */,
 			);
 			name = "Browse Mode";
+			sourceTree = "<group>";
+		};
+		46650B2D17D870D4000464B5 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				46650B2E17D870EA000464B5 /* MBProgressHUD.h */,
+				46650B2F17D870EA000464B5 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		46650B3117D87A03000464B5 /* Plan Mode */ = {
+			isa = PBXGroup;
+			children = (
+				46650B3217D87FB8000464B5 /* PlanListViewController.h */,
+				46650B3317D87FB8000464B5 /* PlanListViewController.m */,
+			);
+			name = "Plan Mode";
 			sourceTree = "<group>";
 		};
 		46712F6017D3278F00516121 /* Recources */ = {
@@ -305,8 +334,9 @@
 		469FA77E17B0D5B300B34DD8 /* Recommender */ = {
 			isa = PBXGroup;
 			children = (
-				4680ACAA17D1E5AE00861866 /* Models */,
 				465633AD17C9B136007A2E4A /* Browse Mode */,
+				46650B3117D87A03000464B5 /* Plan Mode */,
+				4680ACAA17D1E5AE00861866 /* Models */,
 				469FA82117B0E65200B34DD8 /* Libraries */,
 				4693445117B3511B00F8090A /* MapUtils.h */,
 				4693445217B3511B00F8090A /* MapUtils.m */,
@@ -521,6 +551,7 @@
 		469FA82117B0E65200B34DD8 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				46650B2D17D870D4000464B5 /* MBProgressHUD */,
 				469FA7EC17B0E3E500B34DD8 /* MKNetworkKit */,
 				469FA7BF17B0D73F00B34DD8 /* MAMapKit */,
 				469FA7DC17B0D73F00B34DD8 /* MASearchKit */,
@@ -666,6 +697,9 @@
 				4680ACB517D1EB7400861866 /* PoiStream.m in Sources */,
 				46712F5817D30F1400516121 /* BrowsePoiCell.m in Sources */,
 				46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */,
+				46650B2017D869AE000464B5 /* BrowseWebViewController.m in Sources */,
+				46650B3017D870EA000464B5 /* MBProgressHUD.m in Sources */,
+				46650B3417D87FB8000464B5 /* PlanListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "BrowseRootViewController.h"
 #import "HelperMethods.h"
+#import "BrowseWebViewController.h"
 
 @interface BrowseRootViewController ()
 
@@ -43,6 +44,15 @@
 - (void)viewDidAppear:(BOOL)animated {
     [HelperMethods printFrameOfView:self.view withViewName:@"self.view"];
     [HelperMethods printFrameOfView:self.currentViewController.view withViewName:@"self.currentVC.view"];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toPoiDetailWeb"]) {
+        BrowseWebViewController *poiDetailWeb = segue.destinationViewController;
+        
+        NSIndexPath *index = sender;
+        poiDetailWeb.poi = [self.browseTableViewController.poiStream.pois objectAtIndex:index.row];
+    }
 }
 
 - (void)didReceiveMemoryWarning

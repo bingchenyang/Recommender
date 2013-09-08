@@ -35,7 +35,7 @@
 - (void)setName:(NSString *)name {
     if (![self.nameLable.text isEqualToString:name]) {
         CGSize size = [name sizeWithFont: self.nameLable.font];
-        self.nameLable.frame = CGRectMake(168, 18, size.width, size.height);
+        self.nameLable.frame = CGRectMake(168, 2, size.width, size.height);
         self.nameLable.text = name;
     }
 }
@@ -43,7 +43,7 @@
 - (void)setDescription:(NSString *)description {
     if (![self.descriptionLabel.text isEqualToString: description]) {
         CGSize size = [description sizeWithFont: self.descriptionLabel.font];
-        self.descriptionLabel.frame = CGRectMake(168, 88, size.width, size.height);
+        self.descriptionLabel.frame = CGRectMake(168, 30, size.width, size.height);
         self.descriptionLabel.text = description;
     }
 }
@@ -52,9 +52,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(168 , 18, 46, 21)];
-        self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(168, 88, 42, 21)];
-        self.ratingView = [[UIImageView alloc] initWithFrame:CGRectMake(160, 47, 160, 25)];
+        self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(168 , 2, 46, 21)];
+        self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(168, 30, 42, 21)];
+        self.ratingView = [[UIImageView alloc] initWithFrame:CGRectMake(180, 80, 120, 20)];
         self.photoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 120)];
         
         [self.contentView addSubview:self.nameLable];

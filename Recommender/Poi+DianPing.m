@@ -7,6 +7,9 @@
 //
 
 #import "Poi+DianPing.h"
+#import "Category+DianPing.h"
+#import "Region+DianPing.h"
+#import "Deal+DianPing.h"
 
 @implementation Poi (DianPing)
 
@@ -81,10 +84,10 @@
         poi.city = dpResponse[@"city"];
         
         if (dpResponse[@"regions"] != nil) {
-            poi.regions = dpResponse[@"regions"];
+            poi.regions = [Region regionsWithCategoryArray:dpResponse[@"regions"] inObjectContext:context];
         }
         if (dpResponse[@"categories"] != nil) {
-            poi.categories = [Category categoryWithCategoryArray:dpResponse[@"categories"] inObjectContext:context];
+            poi.categories = [Category categoriesWithCategoryArray: dpResponse[@"categories"] inObjectContext:context];
         }
         
         poi.latitude = dpResponse[@"latitude"];
@@ -107,7 +110,9 @@
         
         poi.hasDeal = dpResponse[@"has_deal"];
         poi.dealCount = dpResponse[@"deal_count"];
-        poi.deals = dpResponse[@"deals"];
+        if ([poi.hasCoupon boolValue]) {
+            poi.deals = [Deal dealsWithDPResponse:dpResponse[@"deals"] inObjectContext:context];
+        }
     }
     
     return poi;

@@ -7,7 +7,6 @@
 //
 
 #import "Poi.h"
-#import "Category+DianPing.h"
 
 @interface Poi (DianPing)
 

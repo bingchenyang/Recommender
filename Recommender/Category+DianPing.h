@@ -11,7 +11,7 @@
 @interface Category (DianPing)
 
 + (Category *)categoryWithCategoryName:(NSString *)categoryName inObjectContext:(NSManagedObjectContext *)context;
-+ (NSSet *)categoryWithCategoryArray:(NSArray *)categoryArray inObjectContext:(NSManagedObjectContext *)context;
++ (NSSet *)categoriesWithCategoryArray:(NSArray *)categoryArray inObjectContext:(NSManagedObjectContext *)context;
 
 
 @end

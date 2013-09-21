@@ -11,6 +11,6 @@
 @interface Region (DianPing)
 
 + (Region *)regionWithCategoryName:(NSString *)regionName inObjectContext:(NSManagedObjectContext *)context;
-+ (NSSet *)regionWithCategoryArray:(NSArray *)regionArray inObjectContext:(NSManagedObjectContext *)context;
++ (NSSet *)regionsWithCategoryArray:(NSArray *)regionArray inObjectContext:(NSManagedObjectContext *)context;
 
 @end

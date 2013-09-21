@@ -37,7 +37,7 @@
     return category;
 }
 
-+ (NSSet *)categoryWithCategoryArray:(NSArray *)categoryArray
++ (NSSet *)categoriesWithCategoryArray:(NSArray *)categoryArray
                        inObjectContext:(NSManagedObjectContext *)context {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:[categoryArray count]];
     for (NSString *categoryName in categoryArray) {

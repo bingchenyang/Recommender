@@ -37,7 +37,7 @@
     return region;
 }
 
-+ (NSSet *)regionWithCategoryArray:(NSArray *)regionArray
++ (NSSet *)regionsWithCategoryArray:(NSArray *)regionArray
                    inObjectContext:(NSManagedObjectContext *)context {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:[regionArray count]];
     for (NSString *regionName in regionArray) {

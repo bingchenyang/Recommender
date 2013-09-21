@@ -10,4 +10,7 @@
 
 @interface Deal (DianPing)
 
++ (Deal *)dealWithDPResponse:(NSDictionary *)dpResponse inObjectContext:(NSManagedObjectContext *)context;
++ (NSSet *)dealsWithDPResponse:(NSArray *)dpResponse inObjectContext:(NSManagedObjectContext *)context;
+
 @end

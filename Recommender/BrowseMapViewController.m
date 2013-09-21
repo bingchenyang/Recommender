@@ -28,30 +28,30 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.mapView = [[MAMapView alloc] init];
-    
-    self.poiStream = [[PoiStream alloc] init];
-    self.poiStream.delegate = self;
-    [self.poiStream fetchPois];
-    
-    self.engineForImg = [[MKNetworkEngine alloc] init];
+//    self.mapView = [[MAMapView alloc] init];
+//    
+//    self.poiStream = [[PoiStream alloc] init];
+//    self.poiStream.delegate = self;
+//    [self.poiStream fetchPois];
+//    
+//    self.engineForImg = [[MKNetworkEngine alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    self.mapView.frame = self.view.bounds;
-    self.mapView.delegate = self;
-    [self.view addSubview:self.mapView];
-    
-    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M"];
-    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M"];
+//    [super viewWillAppear:animated];
+//    
+//    self.mapView.frame = self.view.bounds;
+//    self.mapView.delegate = self;
+//    [self.view addSubview:self.mapView];
+//    
+//    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M"];
+//    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M"];
     //self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M --> viewDidAppear"];
-    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M --> viewDidAppear"];
+//    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M --> viewDidAppear"];
+//    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M --> viewDidAppear"];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -123,15 +123,15 @@
         [spinner startAnimating];
         annotationView.leftCalloutAccessoryView = spinner;
         
-        MKNetworkOperation *op = [self.engineForImg operationWithURLString:[annotation photoURL]];
-        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
-            imgView.image = [UIImage imageWithData:completedOperation.responseData];
-            annotationView.leftCalloutAccessoryView = imgView;
-        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            ;
-        }];
-        [self.engineForImg enqueueOperation:op];
+//        MKNetworkOperation *op = [self.engineForImg operationWithURLString:[annotation photoURL]];
+//        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+//            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 35, 35)];
+//            imgView.image = [UIImage imageWithData:completedOperation.responseData];
+//            annotationView.leftCalloutAccessoryView = imgView;
+//        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+//            ;
+//        }];
+//        [self.engineForImg enqueueOperation:op];
         
         return annotationView;
     }

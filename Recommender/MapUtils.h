@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MAMapKit.h"
+#import <MAMapKit/MAMapKit.h>
 
 @interface MapUtils : NSObject
 + (void)zoomMapView:(MAMapView *)mapView ToFitAnnotations:(NSArray *)annotations;

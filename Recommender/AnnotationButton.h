@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MAMapKit.h"
+#import <MAMapKit/MAMapKit.h>
 #import "DPPoiAnnotation.h"
 
 @interface AnnotationButton : UIButton

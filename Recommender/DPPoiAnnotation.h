@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "MAPointAnnotation.h"
+#import <MAMapKit/MAPointAnnotation.h>
 
 @interface DPPoiAnnotation : MAPointAnnotation
 @property (strong, nonatomic) NSString *pid;

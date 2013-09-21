@@ -2,48 +2,60 @@
 //  Poi.h
 //  Recommender
 //
-//  Created by Benson Yang on 8/31/13.
+//  Created by Benson Yang on 9/21/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
-// 一个Poi(Point of interest)就是一个景点，是对get_single_business返回值的封装
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Poi : NSObject
-- (id)initWithResponse:(NSDictionary *)response;
-- (void)loadFromDictionary:(NSDictionary *)data;
+@class Category, Deal, Region;
 
-@property (nonatomic, strong) NSDictionary *responseData;
+@interface Poi : NSManagedObject
 
-@property (nonatomic) NSInteger poiId; // business_id
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *branchName;
-@property (nonatomic, copy) NSString *address;
-@property (nonatomic, copy) NSString *telephone;
-@property (nonatomic, copy) NSString *city;
-@property (nonatomic) NSArray *regions;
-@property (nonatomic) NSArray *categories;
-@property (nonatomic) CGFloat latitude;
-@property (nonatomic) CGFloat longitude;
-@property (nonatomic) CGFloat avgRating;
-@property (nonatomic, copy) NSString *ratingSmallImageUrl;
-@property (nonatomic) NSInteger productGrade;
-@property (nonatomic) NSInteger decorationGrade;
-@property (nonatomic) NSInteger serviceGrade;
-@property (nonatomic) NSInteger avgPrice;
-@property (nonatomic) NSInteger reviewCount;
-@property (nonatomic, copy) NSString *poiUrl; // business_url
-@property (nonatomic, copy) NSString *smallPhotoUrl;
+@property (nonatomic, retain) NSString * address;
+@property (nonatomic, retain) NSNumber * avgPrice;
+@property (nonatomic, retain) NSNumber * avgRating;
+@property (nonatomic, retain) NSString * branchName;
+@property (nonatomic, retain) NSString * city;
+@property (nonatomic, retain) NSString * couponDescription;
+@property (nonatomic, retain) NSNumber * couponId;
+@property (nonatomic, retain) NSString * couponUrl;
+@property (nonatomic, retain) NSNumber * dealCount;
+@property (nonatomic, retain) NSNumber * decorationGrade;
+@property (nonatomic, retain) NSNumber * hasCoupon;
+@property (nonatomic, retain) NSNumber * hasDeal;
+@property (nonatomic, retain) NSNumber * latitude;
+@property (nonatomic, retain) NSNumber * longitude;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * poiId;
+@property (nonatomic, retain) NSString * poiUrl;
+@property (nonatomic, retain) NSNumber * productGrade;
+@property (nonatomic, retain) NSString * ratingSmallImageUrl;
+@property (nonatomic, retain) NSNumber * reviewCount;
+@property (nonatomic, retain) NSNumber * serviceGrade;
+@property (nonatomic, retain) NSString * smallPhotoUrl;
+@property (nonatomic, retain) NSString * telephone;
+@property (nonatomic, retain) NSSet *categories;
+@property (nonatomic, retain) NSSet *deals;
+@property (nonatomic, retain) NSSet *regions;
+@end
 
-//优惠券
-@property (nonatomic) BOOL hasCoupon;
-@property (nonatomic) NSInteger couponId;
-@property (nonatomic, copy) NSString *couponDescription;
-@property (nonatomic, copy) NSString *couponUrl;
+@interface Poi (CoreDataGeneratedAccessors)
 
-//团购
-@property (nonatomic) BOOL hasDeal;
-@property (nonatomic) NSInteger dealCount;
-@property (nonatomic) NSArray *deals;
+- (void)addCategoriesObject:(Category *)value;
+- (void)removeCategoriesObject:(Category *)value;
+- (void)addCategories:(NSSet *)values;
+- (void)removeCategories:(NSSet *)values;
+
+- (void)addDealsObject:(Deal *)value;
+- (void)removeDealsObject:(Deal *)value;
+- (void)addDeals:(NSSet *)values;
+- (void)removeDeals:(NSSet *)values;
+
+- (void)addRegionsObject:(Region *)value;
+- (void)removeRegionsObject:(Region *)value;
+- (void)addRegions:(NSSet *)values;
+- (void)removeRegions:(NSSet *)values;
 
 @end

@@ -1,18 +1,18 @@
 //
-//  PlanListViewController.m
+//  MoreListViewController.m
 //  Recommender
 //
-//  Created by Benson Yang on 9/5/13.
+//  Created by Benson Yang on 9/14/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "PlanListViewController.h"
+#import "MoreListViewController.h"
 
-@interface PlanListViewController ()
+@interface MoreListViewController ()
 
 @end
 
-@implementation PlanListViewController
+@implementation MoreListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,9 +32,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    self.navigationItem.title = @"More";
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -46,12 +45,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 1;
 }
@@ -61,7 +62,14 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"登录";
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
@@ -116,9 +124,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-}
-- (IBAction)addNewPlan:(id)sender {
-    
 }
 
 @end

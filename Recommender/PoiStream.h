@@ -9,7 +9,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "Poi.h"
+#import "Poi+DianPing.h"
 
 @class PoiStream;
 @protocol PoiStreamDelegate <NSObject>

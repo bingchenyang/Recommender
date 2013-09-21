@@ -87,22 +87,13 @@
 
 - (DPPoiAnnotation *)annotationForPoi:(Poi *)poi {
     DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
-    annotation.coordinate = CLLocationCoordinate2DMake(poi.latitude, poi.longitude);
+    annotation.coordinate = CLLocationCoordinate2DMake([poi.latitude floatValue], [poi.longitude floatValue]);
     annotation.title = poi.name;
     annotation.subtitle = poi.address;
     annotation.photoURL = poi.smallPhotoUrl;
     annotation.ratingImgURL = poi.ratingSmallImageUrl;
     
     return annotation;
-}
-
-- (void) showPoiDetail:(id) sender {
-//    AnnotationButton *button = (AnnotationButton *)sender;
-//    PoiDetailViewController *pDVC = [[PoiDetailViewController alloc]initWithNibName:@"PoiDetailViewController" bundle:nil];
-//    pDVC.annotation = button.annotation;
-//    [self.navigationController pushViewController:pDVC animated:YES];
-    
-    BrowseWebViewController *webViewController = [[BrowseWebViewController alloc] init];
 }
 
 #pragma mark - MAMapViewDelegate

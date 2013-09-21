@@ -9,6 +9,7 @@
 #import "PoiStream.h"
 #import "DianPingEngine.h"
 #import "DianPingAPI.h"
+#import "RecommenderDatabase.h"
 
 #define FIND_BUSINESS_API @"v1/business/find_businesses"
 
@@ -24,7 +25,7 @@
         NSString *status = completedOperation.responseJSON[@"status"];
         if ([status isEqualToString:@"OK"]) {
             [self handlePoiResponse:completedOperation.responseJSON[@"businesses"]];
-            [self.delegate PoiStreamDelegateFetchPoisDidFinish:self];
+            //[self.delegate PoiStreamDelegateFetchPoisDidFinish:self];
         } else {
             // handle error;
         }
@@ -41,13 +42,28 @@
 }
 
 - (void)handlePoiResponse:(NSArray *)poisInfoArray {
-    NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
-    for (NSDictionary *poiInfo in poisInfoArray) {
-        Poi *poi = [[Poi alloc] initWithResponse:poiInfo];
-        [pois addObject:poi];
-    }
-    
-    self.pois = pois;
+//    NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
+//    for (NSDictionary *poiInfo in poisInfoArray) {
+//        Poi *poi = [[Poi alloc] initWithResponse:poiInfo];
+//        [pois addObject:poi];
+//    }
+//    
+//    self.pois = pois;
+    // 1.取得UIManagedDocument --> NSManagedObjectContext
+    // 2.将结果写入数据库，或是从数据库读取数据至self.pois
+    // 3.回调函数
+
+    [RecommenderDatabase openDatabaseOnCompletion:^(UIManagedDocument *document) {
+        NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
+        NSManagedObjectContext *context = document.managedObjectContext;
+        for (NSDictionary *poiInfo in poisInfoArray) {
+            Poi *poi = [Poi poiWithDPResponse:poiInfo inObjectContext:context];
+            [pois addObject:poi];
+        }
+        self.pois = pois;
+        
+        [self.delegate PoiStreamDelegateFetchPoisDidFinish:self];
+    }];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RecommenderDatabase.h"
+static UIManagedDocument *document;
 
 @implementation RecommenderDatabase
 
@@ -14,7 +15,9 @@
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     url = [url URLByAppendingPathComponent:@"RecommenderDatabase"];
     
-    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL: url];
+    if (document == nil) {
+        document = [[UIManagedDocument alloc] initWithFileURL: url];
+    }
     if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         [document openWithCompletionHandler:^(BOOL success) {
             if (success) {

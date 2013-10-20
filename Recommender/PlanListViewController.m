@@ -250,11 +250,6 @@
             [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
-    NSError *error;
-    [self.managedObjectContext save:&error];
-    if (error) {
-        NSLog(@"%@", error);
-    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
@@ -280,6 +275,12 @@
     if (buttonIndex == kButtonIndexConfirm) {
         TravelPlan *plan = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
         [plan addPoisObject:self.poi];
+        
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
     }
 }
 

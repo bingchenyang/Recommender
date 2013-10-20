@@ -17,4 +17,6 @@
 @property (nonatomic, strong) Poi *poi;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic) BOOL isForAddingPoi;
+
 @end

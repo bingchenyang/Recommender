@@ -37,8 +37,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toProjectListView"]) {
-        ProjectListViewController *planListVC = segue.destinationViewController;
-        planListVC.poi = self.poi;
+        ProjectListViewController *projectListVC = segue.destinationViewController;
+        projectListVC.poi = self.poi;
+        projectListVC.isForAddingPoi = YES;
     }
 }
 

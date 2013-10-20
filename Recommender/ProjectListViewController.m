@@ -31,6 +31,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.isForAddingPoi = NO;
     }
     return self;
 }
@@ -49,6 +50,11 @@
         self.managedObjectContext = document.managedObjectContext;
         NSLog(@"In ProjectListViewController: %@", self.managedObjectContext);
         self.navigationItem.rightBarButtonItem.enabled = YES;
+        
+        if (!self.isForAddingPoi) {
+            NSArray *barButtonItems = [NSArray arrayWithObjects:self.editButtonItem, self.navigationItem.rightBarButtonItem, nil];
+            self.navigationItem.rightBarButtonItems = barButtonItems;
+        }
     }];
 }
 
@@ -140,28 +146,30 @@
     return [self.fetchedResultsController sectionIndexTitles];
 }
 
-/*
-// Override to support conditional editing of the table view.
+#pragma mark - Editing table support methods
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (self.isForAddingPoi) {
+        return NO;
+    }
+    else {
+        return [self.fetchedResultsController.fetchedObjects count] > indexPath.row;
+    }
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        TravelProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:project];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -266,9 +274,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toPlanListView"]) {
         PlanListViewController *pVC = segue.destinationViewController;
-        pVC.travelProject = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
-        pVC.managedObjectContext = self.managedObjectContext;
         pVC.poi = self.poi;
+        pVC.isForAddingPoi = self.isForAddingPoi;
+        pVC.travelProject = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
+        pVC.managedObjectContext = self.managedObjectContext; //set managedObjectContext will call viewDidLoad
     }
 }
 

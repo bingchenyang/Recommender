@@ -23,6 +23,15 @@
 		46712F6217D327C700516121 /* PoiDefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46712F6117D327C700516121 /* PoiDefaultIcon.png */; };
 		46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F6417D3283100516121 /* ImageCacheCenter.m */; };
 		467AD3E817E4000C001B3C97 /* MoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467AD3E717E4000C001B3C97 /* MoreListViewController.m */; };
+		467BB2961813BBBA00B23004 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2951813BBBA00B23004 /* User.m */; };
+		467BB2991813BBBB00B23004 /* TravelPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2981813BBBB00B23004 /* TravelPlan.m */; };
+		467BB29C1813BBBB00B23004 /* Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB29B1813BBBB00B23004 /* Poi.m */; };
+		467BB29F1813BBBB00B23004 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB29E1813BBBB00B23004 /* Category.m */; };
+		467BB2A21813BBBB00B23004 /* Transportation.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2A11813BBBB00B23004 /* Transportation.m */; };
+		467BB2A51813BBBB00B23004 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2A41813BBBB00B23004 /* Deal.m */; };
+		467BB2A81813BBBB00B23004 /* TravelProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2A71813BBBB00B23004 /* TravelProject.m */; };
+		467BB2AB1813BBBB00B23004 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2AA1813BBBB00B23004 /* Region.m */; };
+		467BB2AE1813C99E00B23004 /* PlanDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2AD1813C99E00B23004 /* PlanDetailViewController.m */; };
 		467F786B181228B300130FBC /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F786A181228B300130FBC /* UserManager.m */; };
 		467F786F18122B9100130FBC /* User+DianPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F786E18122B9100130FBC /* User+DianPing.m */; };
 		467F789618123EA500130FBC /* PlanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467F789518123EA500130FBC /* PlanListViewController.m */; };
@@ -30,14 +39,6 @@
 		4680AC5D17D1B9F900861866 /* BrowseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4680AC5C17D1B9F900861866 /* BrowseTableViewController.m */; };
 		4680AC6217D1D12300861866 /* HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 4680AC6117D1D12300861866 /* HelperMethods.m */; };
 		4680ACB517D1EB7400861866 /* PoiStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4680ACB417D1EB7400861866 /* PoiStream.m */; };
-		46822F9618127B2800268951 /* TravelPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822F9518127B2800268951 /* TravelPlan.m */; };
-		46822F9918127B2800268951 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822F9818127B2800268951 /* Deal.m */; };
-		46822F9C18127B2800268951 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822F9B18127B2800268951 /* User.m */; };
-		46822F9F18127B2800268951 /* Region.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822F9E18127B2800268951 /* Region.m */; };
-		46822FA218127B2800268951 /* TravelProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822FA118127B2800268951 /* TravelProject.m */; };
-		46822FA518127B2900268951 /* Transportation.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822FA418127B2900268951 /* Transportation.m */; };
-		46822FA818127B2900268951 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822FA718127B2900268951 /* Category.m */; };
-		46822FAB18127B2900268951 /* Poi.m in Sources */ = {isa = PBXBuildFile; fileRef = 46822FAA18127B2900268951 /* Poi.m */; };
 		4682BD7C17E83911000BAE11 /* Poi+DianPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4682BD7B17E83911000BAE11 /* Poi+DianPing.m */; };
 		4682BDEA17E84486000BAE11 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4682BDE917E84486000BAE11 /* CoreData.framework */; };
 		4693445317B3511B00F8090A /* MapUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4693445217B3511B00F8090A /* MapUtils.m */; };
@@ -120,6 +121,24 @@
 		46712F6417D3283100516121 /* ImageCacheCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheCenter.m; sourceTree = "<group>"; };
 		467AD3E617E4000C001B3C97 /* MoreListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreListViewController.h; sourceTree = "<group>"; };
 		467AD3E717E4000C001B3C97 /* MoreListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreListViewController.m; sourceTree = "<group>"; };
+		467BB2941813BBBA00B23004 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		467BB2951813BBBA00B23004 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		467BB2971813BBBB00B23004 /* TravelPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPlan.h; sourceTree = "<group>"; };
+		467BB2981813BBBB00B23004 /* TravelPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPlan.m; sourceTree = "<group>"; };
+		467BB29A1813BBBB00B23004 /* Poi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poi.h; sourceTree = "<group>"; };
+		467BB29B1813BBBB00B23004 /* Poi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poi.m; sourceTree = "<group>"; };
+		467BB29D1813BBBB00B23004 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		467BB29E1813BBBB00B23004 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		467BB2A01813BBBB00B23004 /* Transportation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transportation.h; sourceTree = "<group>"; };
+		467BB2A11813BBBB00B23004 /* Transportation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transportation.m; sourceTree = "<group>"; };
+		467BB2A31813BBBB00B23004 /* Deal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deal.h; sourceTree = "<group>"; };
+		467BB2A41813BBBB00B23004 /* Deal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deal.m; sourceTree = "<group>"; };
+		467BB2A61813BBBB00B23004 /* TravelProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelProject.h; sourceTree = "<group>"; };
+		467BB2A71813BBBB00B23004 /* TravelProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelProject.m; sourceTree = "<group>"; };
+		467BB2A91813BBBB00B23004 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
+		467BB2AA1813BBBB00B23004 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
+		467BB2AC1813C99E00B23004 /* PlanDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanDetailViewController.h; sourceTree = "<group>"; };
+		467BB2AD1813C99E00B23004 /* PlanDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanDetailViewController.m; sourceTree = "<group>"; };
 		467F7869181228B300130FBC /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		467F786A181228B300130FBC /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		467F786D18122B9100130FBC /* User+DianPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+DianPing.h"; sourceTree = "<group>"; };
@@ -134,22 +153,6 @@
 		4680AC6117D1D12300861866 /* HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperMethods.m; sourceTree = "<group>"; };
 		4680ACB317D1EB7400861866 /* PoiStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiStream.h; sourceTree = "<group>"; };
 		4680ACB417D1EB7400861866 /* PoiStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiStream.m; sourceTree = "<group>"; };
-		46822F9418127B2800268951 /* TravelPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelPlan.h; sourceTree = "<group>"; };
-		46822F9518127B2800268951 /* TravelPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelPlan.m; sourceTree = "<group>"; };
-		46822F9718127B2800268951 /* Deal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deal.h; sourceTree = "<group>"; };
-		46822F9818127B2800268951 /* Deal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deal.m; sourceTree = "<group>"; };
-		46822F9A18127B2800268951 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		46822F9B18127B2800268951 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		46822F9D18127B2800268951 /* Region.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Region.h; sourceTree = "<group>"; };
-		46822F9E18127B2800268951 /* Region.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Region.m; sourceTree = "<group>"; };
-		46822FA018127B2800268951 /* TravelProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravelProject.h; sourceTree = "<group>"; };
-		46822FA118127B2800268951 /* TravelProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravelProject.m; sourceTree = "<group>"; };
-		46822FA318127B2900268951 /* Transportation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transportation.h; sourceTree = "<group>"; };
-		46822FA418127B2900268951 /* Transportation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transportation.m; sourceTree = "<group>"; };
-		46822FA618127B2900268951 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		46822FA718127B2900268951 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
-		46822FA918127B2900268951 /* Poi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poi.h; sourceTree = "<group>"; };
-		46822FAA18127B2900268951 /* Poi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poi.m; sourceTree = "<group>"; };
 		4682BD7A17E83911000BAE11 /* Poi+DianPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Poi+DianPing.h"; sourceTree = "<group>"; };
 		4682BD7B17E83911000BAE11 /* Poi+DianPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Poi+DianPing.m"; sourceTree = "<group>"; };
 		4682BDE917E84486000BAE11 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -296,6 +299,8 @@
 				46F359C517EFFF78000887DB /* InsertCell.m */,
 				467F789418123EA500130FBC /* PlanListViewController.h */,
 				467F789518123EA500130FBC /* PlanListViewController.m */,
+				467BB2AC1813C99E00B23004 /* PlanDetailViewController.h */,
+				467BB2AD1813C99E00B23004 /* PlanDetailViewController.m */,
 			);
 			name = "Plan Mode";
 			sourceTree = "<group>";
@@ -340,23 +345,23 @@
 			isa = PBXGroup;
 			children = (
 				467F786C18122AF800130FBC /* DianPingCategory */,
-				46822F9418127B2800268951 /* TravelPlan.h */,
-				46822F9518127B2800268951 /* TravelPlan.m */,
-				46822FA918127B2900268951 /* Poi.h */,
-				46822FAA18127B2900268951 /* Poi.m */,
-				46822FA618127B2900268951 /* Category.h */,
-				46822FA718127B2900268951 /* Category.m */,
-				46822FA318127B2900268951 /* Transportation.h */,
-				46822FA418127B2900268951 /* Transportation.m */,
-				46822FA018127B2800268951 /* TravelProject.h */,
-				46822FA118127B2800268951 /* TravelProject.m */,
-				46822F9D18127B2800268951 /* Region.h */,
-				46822F9E18127B2800268951 /* Region.m */,
-				46822F9A18127B2800268951 /* User.h */,
-				46822F9B18127B2800268951 /* User.m */,
-				46822F9718127B2800268951 /* Deal.h */,
-				46822F9818127B2800268951 /* Deal.m */,
 				466A269317E57AE200F7AFB1 /* Model.xcdatamodeld */,
+				467BB2941813BBBA00B23004 /* User.h */,
+				467BB2951813BBBA00B23004 /* User.m */,
+				467BB2971813BBBB00B23004 /* TravelPlan.h */,
+				467BB2981813BBBB00B23004 /* TravelPlan.m */,
+				467BB29A1813BBBB00B23004 /* Poi.h */,
+				467BB29B1813BBBB00B23004 /* Poi.m */,
+				467BB29D1813BBBB00B23004 /* Category.h */,
+				467BB29E1813BBBB00B23004 /* Category.m */,
+				467BB2A01813BBBB00B23004 /* Transportation.h */,
+				467BB2A11813BBBB00B23004 /* Transportation.m */,
+				467BB2A31813BBBB00B23004 /* Deal.h */,
+				467BB2A41813BBBB00B23004 /* Deal.m */,
+				467BB2A61813BBBB00B23004 /* TravelProject.h */,
+				467BB2A71813BBBB00B23004 /* TravelProject.m */,
+				467BB2A91813BBBB00B23004 /* Region.h */,
+				467BB2AA1813BBBB00B23004 /* Region.m */,
 				4680ACB317D1EB7400861866 /* PoiStream.h */,
 				4680ACB417D1EB7400861866 /* PoiStream.m */,
 			);
@@ -656,10 +661,10 @@
 				469FA80717B0E3E500B34DD8 /* NSDictionary+RequestEncoding.m in Sources */,
 				469FA80817B0E3E500B34DD8 /* NSString+MKNetworkKitAdditions.m in Sources */,
 				469FA80917B0E3E500B34DD8 /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
-				46822F9C18127B2800268951 /* User.m in Sources */,
 				469FA80A17B0E3E500B34DD8 /* UIImageView+MKNetworkKitAdditions.m in Sources */,
+				467BB2961813BBBA00B23004 /* User.m in Sources */,
 				469FA80B17B0E3E500B34DD8 /* MKNetworkEngine.m in Sources */,
-				46822FAB18127B2900268951 /* Poi.m in Sources */,
+				467BB29C1813BBBB00B23004 /* Poi.m in Sources */,
 				469FA80C17B0E3E500B34DD8 /* MKNetworkOperation.m in Sources */,
 				46F359C617EFFF78000887DB /* InsertCell.m in Sources */,
 				469FA80D17B0E3E500B34DD8 /* Reachability.m in Sources */,
@@ -669,27 +674,28 @@
 				4693445B17B377E500F8090A /* AnnotationButton.m in Sources */,
 				4693446D17B39A4000F8090A /* DPPoiAnnotation.m in Sources */,
 				46D0504517ED6429002B0891 /* RecommenderDatabase.m in Sources */,
-				46822FA218127B2800268951 /* TravelProject.m in Sources */,
-				46822F9F18127B2800268951 /* Region.m in Sources */,
+				467BB2AE1813C99E00B23004 /* PlanDetailViewController.m in Sources */,
+				467BB2AB1813BBBB00B23004 /* Region.m in Sources */,
+				467BB2A81813BBBB00B23004 /* TravelProject.m in Sources */,
 				4680AC5A17D1ACFB00861866 /* BrowseRootViewController.m in Sources */,
 				4680AC5D17D1B9F900861866 /* BrowseTableViewController.m in Sources */,
 				467F786F18122B9100130FBC /* User+DianPing.m in Sources */,
 				4680AC6217D1D12300861866 /* HelperMethods.m in Sources */,
-				46822FA818127B2900268951 /* Category.m in Sources */,
+				467BB29F1813BBBB00B23004 /* Category.m in Sources */,
 				4680ACB517D1EB7400861866 /* PoiStream.m in Sources */,
 				46712F5817D30F1400516121 /* BrowsePoiCell.m in Sources */,
 				46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */,
-				46822F9918127B2800268951 /* Deal.m in Sources */,
+				467BB2A51813BBBB00B23004 /* Deal.m in Sources */,
 				46650B2017D869AE000464B5 /* BrowseWebViewController.m in Sources */,
 				46650B3017D870EA000464B5 /* MBProgressHUD.m in Sources */,
 				46650B3417D87FB8000464B5 /* ProjectListViewController.m in Sources */,
-				46822FA518127B2900268951 /* Transportation.m in Sources */,
+				467BB2A21813BBBB00B23004 /* Transportation.m in Sources */,
 				463E28D217ED7EE200A50BF8 /* Region+DianPing.m in Sources */,
 				467AD3E817E4000C001B3C97 /* MoreListViewController.m in Sources */,
 				466A269517E57AE200F7AFB1 /* Model.xcdatamodeld in Sources */,
 				463E28CF17ED7BC200A50BF8 /* Category+DianPing.m in Sources */,
+				467BB2991813BBBB00B23004 /* TravelPlan.m in Sources */,
 				4682BD7C17E83911000BAE11 /* Poi+DianPing.m in Sources */,
-				46822F9618127B2800268951 /* TravelPlan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

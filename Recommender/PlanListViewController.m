@@ -8,6 +8,7 @@
 
 #import "PlanListViewController.h"
 #import "TravelPlan.h"
+#import "PlanDetailViewController.h"
 
 #define kButtonIndexCancel  0
 #define kButtonIndexConfirm 1
@@ -26,6 +27,7 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        self.isForAddingPoi = NO;
     }
     return self;
 }
@@ -48,6 +50,11 @@
         
         [self.managedObjectContext save:nil];
         [self.tableView reloadData];
+    }
+    
+    if (!self.isForAddingPoi) {
+        NSArray *barButtonItems = [NSArray arrayWithObjects:self.editButtonItem, self.navigationItem.rightBarButtonItem, nil];
+        self.navigationItem.rightBarButtonItems = barButtonItems;
     }
 }
 
@@ -139,37 +146,43 @@
 
 #pragma mark - UITalbleViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedIndexPath = indexPath;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加景点"
-                                                    message:@"确认添加景点"
-                                                   delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定", nil];
-    [alert show];
+    if (self.isForAddingPoi) {
+        self.selectedIndexPath = indexPath;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加景点"
+                                                        message:@"确认添加景点"
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消"
+                                              otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+    else {
+        // 应该navigate到PlanDetaiViewController
+        [self performSegueWithIdentifier:@"toPlanDetailView" sender:indexPath];
+    }
 }
 
-/*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
  // Return NO if you do not want the specified item to be editable.
- return YES;
+     if (self.isForAddingPoi) {
+         return NO;
+     }
+     else {
+         return YES;
+     }
  }
- */
 
-/*
  // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        TravelPlan *plan = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:plan];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    }
+}
 
 /*
  // Override to support rearranging the table view.
@@ -259,22 +272,32 @@
 
 
 #pragma mark - 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toPlanDetailView"]) {
+        PlanDetailViewController *pDVC = segue.destinationViewController;
+        pDVC.travelPlan = [self.fetchedResultsController objectAtIndexPath:sender];
+        pDVC.managedObjectContext = self.managedObjectContext;
+    }
+}
+
 - (IBAction)addAnotherDay:(id)sender {
     TravelPlan *lastPlan = [self.fetchedResultsController.fetchedObjects lastObject];
     
     TravelPlan *travelPlan = [NSEntityDescription insertNewObjectForEntityForName:@"TravelPlan" inManagedObjectContext:self.managedObjectContext];
     travelPlan.sequenceNumber = @([lastPlan.sequenceNumber integerValue] + 1);
     travelPlan.travelProject = self.travelProject;
-    
-    [self.managedObjectContext save:nil];
-    [self.tableView reloadData];
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == kButtonIndexConfirm) {
         TravelPlan *plan = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
-        [plan addPoisObject:self.poi];
+        
+        // TODO:这里有apple的bug
+        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:plan.pois];
+        [tempSet addObject:self.poi];
+        plan.pois = tempSet;
         
         NSError *error;
         [self.managedObjectContext save:&error];

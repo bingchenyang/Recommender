@@ -11,7 +11,7 @@
 @implementation UserManager
 
 - (User *)currentUser {
-    
+    return nil;
 }
 
 @end

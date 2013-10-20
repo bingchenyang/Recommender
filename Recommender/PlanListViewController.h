@@ -13,9 +13,9 @@
 #import "RecommenderDatabase.h"
 
 @interface PlanListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
-// 由于travelProject是由上一级传入，故managedObjectContext需要从ProjectListViewController传过来
 @property (nonatomic, strong) Poi *poi;
 @property (nonatomic, strong) TravelProject *travelProject;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
+@property (nonatomic) BOOL isForAddingPoi;
 @end

@@ -32,7 +32,8 @@
 	// Do any additional setup after loading the view.
     
     self.browseMapViewController = [[BrowseMapViewController alloc] init];
-    self.browseTableViewController = [[BrowseTableViewController alloc] init];
+//    self.browseTableViewController = [[BrowseTableViewController alloc] init];
+    self.browseTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BrowseTableViewController"];
     [self addChildViewController:self.browseMapViewController];
     [self addChildViewController:self.browseTableViewController];
     

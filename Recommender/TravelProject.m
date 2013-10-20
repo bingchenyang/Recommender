@@ -2,7 +2,7 @@
 //  TravelProject.m
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 
 @implementation TravelProject
 
+@dynamic createDate;
 @dynamic name;
 @dynamic plans;
 @dynamic traveller;

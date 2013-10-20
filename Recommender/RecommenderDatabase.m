@@ -21,6 +21,7 @@
                 completionBlock(document);
             } else {
                 // error handle
+                NSLog(@"打开数据库并未成功\n:%@", [url path]);
             }
         }];
     }

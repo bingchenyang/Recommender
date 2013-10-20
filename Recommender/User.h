@@ -2,7 +2,7 @@
 //  User.h
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 
 @interface User : NSManagedObject
 
-@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * password;
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSSet *travelProjects;

@@ -42,13 +42,6 @@
 }
 
 - (void)handlePoiResponse:(NSArray *)poisInfoArray {
-//    NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
-//    for (NSDictionary *poiInfo in poisInfoArray) {
-//        Poi *poi = [[Poi alloc] initWithResponse:poiInfo];
-//        [pois addObject:poi];
-//    }
-//    
-//    self.pois = pois;
     // 1.取得UIManagedDocument --> NSManagedObjectContext
     // 2.将结果写入数据库，或是从数据库读取数据至self.pois
     // 3.回调函数
@@ -56,6 +49,7 @@
     [RecommenderDatabase openDatabaseOnCompletion:^(UIManagedDocument *document) {
         NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
         NSManagedObjectContext *context = document.managedObjectContext;
+        NSLog(@"In PoiStream: %@", context);
         for (NSDictionary *poiInfo in poisInfoArray) {
             Poi *poi = [Poi poiWithDPResponse:poiInfo inObjectContext:context];
             [pois addObject:poi];

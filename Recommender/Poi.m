@@ -2,7 +2,7 @@
 //  Poi.m
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "Category.h"
 #import "Deal.h"
 #import "Region.h"
+#import "TravelPlan.h"
 
 
 @implementation Poi
@@ -40,5 +41,6 @@
 @dynamic categories;
 @dynamic deals;
 @dynamic regions;
+@dynamic travelPlans;
 
 @end

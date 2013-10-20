@@ -2,23 +2,19 @@
 //  TravelPlan.m
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
 #import "TravelPlan.h"
-#import "AfterNoonPlan.h"
-#import "MorningPlan.h"
-#import "NightPlan.h"
+#import "Poi.h"
 #import "TravelProject.h"
 
 
 @implementation TravelPlan
 
 @dynamic sequenceNumber;
-@dynamic afterNoonPlan;
-@dynamic morningPlan;
-@dynamic nightPlan;
+@dynamic pois;
 @dynamic travelProject;
 
 @end

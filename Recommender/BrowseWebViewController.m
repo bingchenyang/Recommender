@@ -8,7 +8,7 @@
 
 #import "BrowseWebViewController.h"
 #import "MBProgressHUD.h"
-#import "PlanListViewController.h"
+#import "ProjectListViewController.h"
 
 @interface BrowseWebViewController ()
 
@@ -36,8 +36,8 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toPlanListView"]) {
-        PlanListViewController *planListVC = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"toProjectListView"]) {
+        ProjectListViewController *planListVC = segue.destinationViewController;
         planListVC.poi = self.poi;
     }
 }
@@ -49,7 +49,7 @@
 //        ;
 //    }];
     
-    [self performSegueWithIdentifier:@"toPlanListView" sender:self];
+    [self performSegueWithIdentifier:@"toProjectListView" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

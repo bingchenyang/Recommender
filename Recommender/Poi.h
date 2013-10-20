@@ -2,14 +2,14 @@
 //  Poi.h
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Category, Deal, Region;
+@class Category, Deal, Region, TravelPlan;
 
 @interface Poi : NSManagedObject
 
@@ -39,6 +39,7 @@
 @property (nonatomic, retain) NSSet *categories;
 @property (nonatomic, retain) NSSet *deals;
 @property (nonatomic, retain) NSSet *regions;
+@property (nonatomic, retain) NSSet *travelPlans;
 @end
 
 @interface Poi (CoreDataGeneratedAccessors)
@@ -57,5 +58,10 @@
 - (void)removeRegionsObject:(Region *)value;
 - (void)addRegions:(NSSet *)values;
 - (void)removeRegions:(NSSet *)values;
+
+- (void)addTravelPlansObject:(TravelPlan *)value;
+- (void)removeTravelPlansObject:(TravelPlan *)value;
+- (void)addTravelPlans:(NSSet *)values;
+- (void)removeTravelPlans:(NSSet *)values;
 
 @end

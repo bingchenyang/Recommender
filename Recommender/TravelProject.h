@@ -2,7 +2,7 @@
 //  TravelProject.h
 //  Recommender
 //
-//  Created by Benson Yang on 9/21/13.
+//  Created by Benson Yang on 10/19/13.
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 
 @interface TravelProject : NSManagedObject
 
+@property (nonatomic, retain) NSDate * createDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *plans;
 @property (nonatomic, retain) User *traveller;

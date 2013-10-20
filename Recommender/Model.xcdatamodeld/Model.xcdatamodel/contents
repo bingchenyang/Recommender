@@ -1,36 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="AfterNoonPlan" representedClassName="AfterNoonPlan" syncable="YES">
-        <relationship name="belongTo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TravelPlan" inverseName="afterNoonPlan" inverseEntity="TravelPlan" syncable="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
-        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" syncable="YES"/>
-        <relationship name="transportations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transportation" syncable="YES"/>
-    </entity>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" inverseName="categories" inverseEntity="Poi" syncable="YES"/>
     </entity>
     <entity name="Deal" representedClassName="Deal" syncable="YES">
         <attribute name="dealDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastingHour" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="memo" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="poi" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Poi" syncable="YES"/>
-    </entity>
-    <entity name="MorningPlan" representedClassName="MorningPlan" syncable="YES">
-        <relationship name="belongTo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TravelPlan" inverseName="morningPlan" inverseEntity="TravelPlan" syncable="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
-        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" syncable="YES"/>
-        <relationship name="transportations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transportation" syncable="YES"/>
-    </entity>
-    <entity name="NightPlan" representedClassName="NightPlan" syncable="YES">
-        <relationship name="belongTo" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TravelPlan" inverseName="nightPlan" inverseEntity="TravelPlan" syncable="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
-        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" syncable="YES"/>
-        <relationship name="transportations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transportation" syncable="YES"/>
+        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" inverseName="deals" inverseEntity="Poi" syncable="YES"/>
     </entity>
     <entity name="Poi" representedClassName="Poi" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,44 +34,40 @@
         <attribute name="serviceGrade" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="smallPhotoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
-        <relationship name="deals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deal" syncable="YES"/>
-        <relationship name="regions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Region" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="pois" inverseEntity="Category" syncable="YES"/>
+        <relationship name="deals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deal" inverseName="pois" inverseEntity="Deal" syncable="YES"/>
+        <relationship name="regions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Region" inverseName="pois" inverseEntity="Region" syncable="YES"/>
+        <relationship name="travelPlans" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TravelPlan" inverseName="pois" inverseEntity="TravelPlan" syncable="YES"/>
     </entity>
     <entity name="Region" representedClassName="Region" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" inverseName="regions" inverseEntity="Poi" syncable="YES"/>
     </entity>
     <entity name="Transportation" representedClassName="Transportation" syncable="YES"/>
     <entity name="TravelPlan" representedClassName="TravelPlan" syncable="YES">
         <attribute name="sequenceNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="afterNoonPlan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AfterNoonPlan" inverseName="belongTo" inverseEntity="AfterNoonPlan" syncable="YES"/>
-        <relationship name="morningPlan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MorningPlan" inverseName="belongTo" inverseEntity="MorningPlan" syncable="YES"/>
-        <relationship name="nightPlan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="NightPlan" inverseName="belongTo" inverseEntity="NightPlan" syncable="YES"/>
+        <relationship name="pois" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poi" inverseName="travelPlans" inverseEntity="Poi" syncable="YES"/>
         <relationship name="travelProject" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="TravelProject" inverseName="plans" inverseEntity="TravelProject" syncable="YES"/>
     </entity>
     <entity name="TravelProject" representedClassName="TravelProject" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="plans" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TravelPlan" inverseName="travelProject" inverseEntity="TravelPlan" syncable="YES"/>
         <relationship name="traveller" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="travelProjects" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="travelProjects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TravelProject" inverseName="traveller" inverseEntity="TravelProject" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AfterNoonPlan" positionX="-461" positionY="-384" width="128" height="105"/>
-        <element name="Category" positionX="-918" positionY="102" width="128" height="60"/>
-        <element name="Deal" positionX="-918" positionY="405" width="128" height="90"/>
-        <element name="Event" positionX="-702" positionY="-267" width="128" height="105"/>
-        <element name="MorningPlan" positionX="-459" positionY="-213" width="128" height="105"/>
-        <element name="NightPlan" positionX="-461" positionY="-63" width="128" height="105"/>
-        <element name="Poi" positionX="-729" positionY="-39" width="128" height="435"/>
-        <element name="Region" positionX="-992" positionY="246" width="128" height="60"/>
-        <element name="Transportation" positionX="-857" positionY="-360" width="128" height="45"/>
-        <element name="TravelPlan" positionX="-119" positionY="-129" width="128" height="120"/>
-        <element name="TravelProject" positionX="-38" positionY="72" width="128" height="90"/>
-        <element name="User" positionX="-261" positionY="48" width="128" height="105"/>
+        <element name="Category" positionX="234" positionY="134" width="128" height="73"/>
+        <element name="Deal" positionX="405" positionY="338" width="128" height="103"/>
+        <element name="Poi" positionX="54" positionY="11" width="128" height="448"/>
+        <element name="Region" positionX="225" positionY="522" width="128" height="73"/>
+        <element name="Transportation" positionX="313" positionY="-52" width="128" height="43"/>
+        <element name="TravelPlan" positionX="-288" positionY="128" width="128" height="88"/>
+        <element name="TravelProject" positionX="-488" positionY="162" width="128" height="105"/>
+        <element name="User" positionX="-531" positionY="-27" width="128" height="90"/>
     </elements>
 </model>

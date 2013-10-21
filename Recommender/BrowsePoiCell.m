@@ -52,15 +52,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(168 , 2, 46, 21)];
-        self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(168, 30, 42, 21)];
-        self.ratingView = [[UIImageView alloc] initWithFrame:CGRectMake(180, 80, 120, 20)];
-        self.photoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 120)];
-        
-        [self.contentView addSubview:self.nameLable];
-        [self.contentView addSubview:self.descriptionLabel];
-        [self.contentView addSubview:self.ratingView];
-        [self.contentView addSubview:self.photoView];
+//        self.nameLable = [[UILabel alloc] initWithFrame:CGRectMake(168 , 2, 46, 21)];
+//        self.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(168, 30, 42, 21)];
+//        self.ratingView = [[UIImageView alloc] initWithFrame:CGRectMake(180, 80, 120, 20)];
+//        self.photoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 160, 120)];
+//        
+//        [self.contentView addSubview:self.nameLable];
+//        [self.contentView addSubview:self.descriptionLabel];
+//        [self.contentView addSubview:self.ratingView];
+//        [self.contentView addSubview:self.photoView];
     }
     return self;
 }

@@ -44,7 +44,6 @@
     [self.refreshControl beginRefreshing];
     [self.poiStream fetchPois];
     
-    [self.tableView registerClass:[BrowsePoiCell class] forCellReuseIdentifier:@"BrowsePoiCell"];
 }
 
 - (void)refresh {

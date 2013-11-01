@@ -48,7 +48,6 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [RecommenderDatabase openDatabaseOnCompletion:^(UIManagedDocument *document) {
         self.managedObjectContext = document.managedObjectContext;
-        NSLog(@"In ProjectListViewController: %@", self.managedObjectContext);
         self.navigationItem.rightBarButtonItem.enabled = YES;
         
         if (!self.isForAddingPoi) {

@@ -49,7 +49,6 @@
     [RecommenderDatabase openDatabaseOnCompletion:^(UIManagedDocument *document) {
         NSMutableArray *pois = [NSMutableArray arrayWithCapacity:[poisInfoArray count]];
         NSManagedObjectContext *context = document.managedObjectContext;
-        NSLog(@"In PoiStream: %@", context);
         for (NSDictionary *poiInfo in poisInfoArray) {
             Poi *poi = [Poi poiWithDPResponse:poiInfo inObjectContext:context];
             [pois addObject:poi];

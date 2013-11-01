@@ -34,16 +34,16 @@
 
 - (void)setName:(NSString *)name {
     if (![self.nameLable.text isEqualToString:name]) {
-        CGSize size = [name sizeWithFont: self.nameLable.font];
-        self.nameLable.frame = CGRectMake(168, 2, size.width, size.height);
+        //CGSize size = [name sizeWithFont: self.nameLable.font];
+        //self.nameLable.frame = CGRectMake(168, 2, size.width, size.height);
         self.nameLable.text = name;
     }
 }
 
 - (void)setDescription:(NSString *)description {
     if (![self.descriptionLabel.text isEqualToString: description]) {
-        CGSize size = [description sizeWithFont: self.descriptionLabel.font];
-        self.descriptionLabel.frame = CGRectMake(168, 30, size.width, size.height);
+//        CGSize size = [description sizeWithFont: self.descriptionLabel.font];
+//        self.descriptionLabel.frame = CGRectMake(168, 30, size.width, size.height);
         self.descriptionLabel.text = description;
     }
 }

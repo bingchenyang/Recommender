@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import "DPPoiAnnotation.h"
+#import "Poi+DianPing.h"
 
 @interface AnnotationButton : UIButton
 @property (nonatomic, strong) DPPoiAnnotation *annotation;
+@property (nonatomic, strong) Poi *poi;
 
 - (id)init;
 

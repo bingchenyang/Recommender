@@ -9,6 +9,7 @@
 #import "BrowseRootViewController.h"
 #import "HelperMethods.h"
 #import "BrowseWebViewController.h"
+#import "BrowseMapViewController.h"
 
 @interface BrowseRootViewController ()
 
@@ -45,8 +46,14 @@
     if ([segue.identifier isEqualToString:@"toPoiDetailWeb"]) {
         BrowseWebViewController *poiDetailWeb = segue.destinationViewController;
         
-        NSIndexPath *index = sender;
-        poiDetailWeb.poi = [self.browseTableViewController.poiStream.pois objectAtIndex:index.row];
+        if ([sender isKindOfClass: [NSIndexPath class]]) {
+            NSIndexPath *index = sender;
+            poiDetailWeb.poi = [self.browseTableViewController.poiStream.pois objectAtIndex:index.row];
+        }
+        else if ([sender isKindOfClass: [AnnotationButton class]]) {
+            AnnotationButton *aButton = sender;
+            poiDetailWeb.poi = aButton.poi;
+        }
     }
 }
 

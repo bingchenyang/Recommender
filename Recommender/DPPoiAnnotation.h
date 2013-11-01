@@ -7,8 +7,10 @@
 //
 
 #import <MAMapKit/MAPointAnnotation.h>
+#import "Poi+DianPing.h"
 
 @interface DPPoiAnnotation : MAPointAnnotation
+@property (strong ,nonatomic) Poi *poi;
 @property (strong, nonatomic) NSString *pid;
 @property (strong, nonatomic) NSString *ratingImgURL;
 @property (strong, nonatomic) NSString *photoURL;

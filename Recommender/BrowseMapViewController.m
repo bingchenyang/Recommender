@@ -9,10 +9,10 @@
 #import "BrowseMapViewController.h"
 #import "DianPingEngine.h"
 #import "MapUtils.h"
-#import "AnnotationButton.h"
 #import "DPPoiAnnotation.h"
 #import "HelperMethods.h"
 #import "BrowseWebViewController.h"
+#import "BrowseRootViewController.h"
 
 #define kDianPingShowPoiDetail @"DianPingShowPoiDetail"
 
@@ -29,14 +29,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [MAMapServices sharedServices].apiKey = @"a7d8df80ccf7c8d83afdf083fdef34be";
+    
     self.mapView = [[MAMapView alloc] init];
     self.mapView.frame = self.view.bounds;
-//
-//    self.poiStream = [[PoiStream alloc] init];
-//    self.poiStream.delegate = self;
-//    [self.poiStream fetchPois];
-//    
-//    self.engineForImg = [[MKNetworkEngine alloc] init];
+
+    self.poiStream = [[PoiStream alloc] init];
+    self.poiStream.delegate = self;
+    [self.poiStream fetchPois];
+
+    self.engineForImg = [[MKNetworkEngine alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,11 +68,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - 验证
-- (NSString *)keyForMap {
-    return @"a7d8df80ccf7c8d83afdf083fdef34be";
-}
-
 #pragma mark - Helper Methods
 - (DPPoiAnnotation *)annotationForBusiness:(NSDictionary *)business {
     DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
@@ -89,6 +85,7 @@
 
 - (DPPoiAnnotation *)annotationForPoi:(Poi *)poi {
     DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
+    annotation.poi = poi;
     annotation.coordinate = CLLocationCoordinate2DMake([poi.latitude floatValue], [poi.longitude floatValue]);
     annotation.title = poi.name;
     annotation.subtitle = poi.address;
@@ -102,23 +99,26 @@
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id)annotation {
     if ([annotation isKindOfClass:[DPPoiAnnotation class]])
     {
+        DPPoiAnnotation *poiAnnotation = annotation;
         static NSString *poiReuseIndetifier = @"poiReuseIndetifier";
         MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:poiReuseIndetifier];
         if (annotationView == nil)
         {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:poiReuseIndetifier];
+            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:poiAnnotation reuseIdentifier:poiReuseIndetifier];
             annotationView.canShowCallout = YES;
         }
         else
         {
-            annotationView.annotation = annotation;
+            annotationView.annotation = poiAnnotation;
         }
         
         annotationView.pinColor = MAPinAnnotationColorPurple;
         annotationView.animatesDrop = YES;
         AnnotationButton *rightButton = [[AnnotationButton alloc] init];
         [rightButton addTarget:self action:@selector(showPoiDetail:) forControlEvents:UIControlEventTouchUpInside];
-        rightButton.annotation = annotation;
+        rightButton.annotation = poiAnnotation;
+        rightButton.poi = poiAnnotation.poi;
+        
         annotationView.rightCalloutAccessoryView = rightButton;
         
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -151,4 +151,10 @@
     [MapUtils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
 }
 
+#pragma mark - 
+- (void) showPoiDetail:(id)sender {
+    AnnotationButton *aButton = sender;
+    BrowseRootViewController *parentVC = (BrowseRootViewController *)self.parentViewController;
+    [parentVC performSegueWithIdentifier:@"toPoiDetailWeb" sender:aButton];
+}
 @end

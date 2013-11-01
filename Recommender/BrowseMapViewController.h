@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import "PoiStream.h"
+#import "AnnotationButton.h"
 
 @interface BrowseMapViewController : UIViewController <MAMapViewDelegate, PoiStreamDelegate>
 

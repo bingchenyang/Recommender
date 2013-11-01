@@ -28,8 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-//    self.mapView = [[MAMapView alloc] init];
-//    
+    [MAMapServices sharedServices].apiKey = @"a7d8df80ccf7c8d83afdf083fdef34be";
+    self.mapView = [[MAMapView alloc] init];
+    self.mapView.frame = self.view.bounds;
+//
 //    self.poiStream = [[PoiStream alloc] init];
 //    self.poiStream.delegate = self;
 //    [self.poiStream fetchPois];
@@ -38,20 +40,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    self.mapView.frame = self.view.bounds;
-//    self.mapView.delegate = self;
-//    [self.view addSubview:self.mapView];
-//    
-//    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M"];
-//    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M"];
+    [super viewWillAppear:animated];
+
+    self.mapView.delegate = self;
+    [self.view addSubview:self.mapView];
+
     //self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-//    [HelperMethods printFrameOfView:self.view withViewName:@"self.view in M --> viewDidAppear"];
-//    [HelperMethods printFrameOfView:self.mapView withViewName:@"self.mapView in M --> viewDidAppear"];
+    CGRect frame = self.view.frame;
+    frame.size.height = frame.size.height + frame.origin.y;
+    frame.origin.y = 0;
+    self.view.frame = frame;
+    self.mapView.frame = frame;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

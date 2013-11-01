@@ -44,6 +44,13 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    CGRect frame = self.view.frame;
+    frame.size.height = frame.size.height + frame.origin.y;
+    frame.origin.y = 0;
+    self.view.frame = frame;
+}
+
 - (void)refresh {
     [self.refreshControl beginRefreshing];
     [self.poiStream fetchPois];

@@ -31,8 +31,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.browseMapViewController = [[BrowseMapViewController alloc] init];
-//    self.browseTableViewController = [[BrowseTableViewController alloc] init];
+    self.browseMapViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BrowseMapViewController"];
     self.browseTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"BrowseTableViewController"];
     [self addChildViewController:self.browseMapViewController];
     [self addChildViewController:self.browseTableViewController];
@@ -40,11 +39,6 @@
     self.mapOrTable.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:kBrowseViewMode];
     self.currentViewController = [self.childViewControllers objectAtIndex:self.mapOrTable.selectedSegmentIndex];
     [self.view addSubview:self.currentViewController.view];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [HelperMethods printFrameOfView:self.view withViewName:@"self.view"];
-    [HelperMethods printFrameOfView:self.currentViewController.view withViewName:@"self.currentVC.view"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

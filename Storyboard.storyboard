@@ -490,7 +490,8 @@
                 <navigationController modalTransitionStyle="flipHorizontal" id="9Vp-NQ-Irj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="浏览模式" id="27Z-jt-wnY"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="FZj-7U-Svw">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="FZj-7U-Svw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -528,7 +529,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uei-GS-0hF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="规划模式" id="bWy-vK-6Md"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iAT-m7-shl">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iAT-m7-shl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -548,6 +550,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="so0-VJ-Fpy"/>
+        <segue reference="n3Y-uB-VrG"/>
     </inferredMetricsTieBreakers>
 </document>

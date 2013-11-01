@@ -29,7 +29,7 @@ struct MGraph {
 @end
 
 @implementation PlanDetailViewController {
-    MGraph poisGraph;
+    struct MGraph poisGraph;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style

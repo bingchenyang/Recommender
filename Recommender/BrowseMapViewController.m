@@ -50,11 +50,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    CGRect frame = self.view.frame;
-    frame.size.height = frame.size.height + frame.origin.y;
-    frame.origin.y = 0;
-    self.view.frame = frame;
-    self.mapView.frame = frame;
+    self.view.frame = self.parentViewController.view.bounds;
+    self.mapView.frame = self.parentViewController.view.bounds;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

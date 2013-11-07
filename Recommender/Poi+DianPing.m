@@ -35,7 +35,7 @@
     self.latitude = data[@"latitude"];
     self.longitude = data[@"longitude"];
     self.avgRating = data[@"avg_rating"];
-        
+
     self.ratingSmallImageUrl = data[@"rating_s_img_url"];
     self.productGrade = data[@"product_grade"];
     self.decorationGrade = data[@"decoration_grade"];

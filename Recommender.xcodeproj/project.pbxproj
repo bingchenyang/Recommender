@@ -83,6 +83,7 @@
 		469FA81317B0E41300B34DD8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA81217B0E41300B34DD8 /* ImageIO.framework */; };
 		469FA81617B0E4A800B34DD8 /* DianPingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA81517B0E4A800B34DD8 /* DianPingEngine.m */; };
 		469FA82917B0E9CF00B34DD8 /* DianPingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */; };
+		46A4F6111829FD620048C4EE /* SimulateAnnealTSP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */; };
 		46D0504517ED6429002B0891 /* RecommenderDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D0504417ED6429002B0891 /* RecommenderDatabase.m */; };
 		46F359C617EFFF78000887DB /* InsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F359C517EFFF78000887DB /* InsertCell.m */; };
 /* End PBXBuildFile section */
@@ -221,6 +222,8 @@
 		469FA81517B0E4A800B34DD8 /* DianPingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingEngine.m; sourceTree = "<group>"; };
 		469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianPingAPI.h; sourceTree = "<group>"; };
 		469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingAPI.m; sourceTree = "<group>"; };
+		46A4F60F1829FD620048C4EE /* SimulateAnnealTSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateAnnealTSP.h; sourceTree = "<group>"; };
+		46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimulateAnnealTSP.mm; sourceTree = "<group>"; };
 		46D0504317ED6429002B0891 /* RecommenderDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommenderDatabase.h; sourceTree = "<group>"; };
 		46D0504417ED6429002B0891 /* RecommenderDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommenderDatabase.m; sourceTree = "<group>"; };
 		46F359C417EFFF78000887DB /* InsertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCell.h; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				46D0504417ED6429002B0891 /* RecommenderDatabase.m */,
 				467F7869181228B300130FBC /* UserManager.h */,
 				467F786A181228B300130FBC /* UserManager.m */,
+				46A4F60F1829FD620048C4EE /* SimulateAnnealTSP.h */,
+				46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -697,6 +702,7 @@
 				46650B2017D869AE000464B5 /* BrowseWebViewController.m in Sources */,
 				46650B3017D870EA000464B5 /* MBProgressHUD.m in Sources */,
 				46650B3417D87FB8000464B5 /* ProjectListViewController.m in Sources */,
+				46A4F6111829FD620048C4EE /* SimulateAnnealTSP.mm in Sources */,
 				467BB2A21813BBBB00B23004 /* Transportation.m in Sources */,
 				463E28D217ED7EE200A50BF8 /* Region+DianPing.m in Sources */,
 				467AD3E817E4000C001B3C97 /* MoreListViewController.m in Sources */,

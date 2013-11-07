@@ -8,6 +8,8 @@
 
 #import "PlanDetailViewController.h"
 #import "Poi+DianPing.h"
+#import "SimulateAnnealTSP.h"
+
 #define MAX_INTEGER 0x7fffffff
 struct MGraph {
     int vertexNumber;
@@ -174,6 +176,10 @@ struct MGraph {
     // 如果仍有pairs，继续
     if ([self.poiPairs count] > 0) {
         [self calculateRoutes:nil];
+    }
+    else {
+        [SimulateAnnealTSP simulateAnneal:poisGraph.edges withSize:poisGraph.vertexNumber];
+        [SimulateAnnealTSP enumTSP:poisGraph.edges withSize:poisGraph.vertexNumber];
     }
 }
 

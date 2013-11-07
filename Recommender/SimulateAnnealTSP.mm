@@ -104,7 +104,7 @@
 }
 
 #pragma mark - 枚举的方式求TSP最优解
-+ (void)enumTSP:(const int [][20])distance withSize:(int)size {
++ (void)enumTSP:(const int [][20])distance withSize:(int)size onComplete:(void (^)(NSArray *))complete {
     int *sequence = new int [size];
     int *bestSolution = new int [size];
     for (int i = 0; i < size; i++) {
@@ -126,6 +126,11 @@
     for (int i = 0; i < size; i++) {
         printf("%i\n", bestSolution[i]);
     }
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:size];
+    for (int i = 0; i < size; i++) {
+        [array addObject:[NSNumber numberWithInt:bestSolution[i]]];
+    }
+    complete(array);
     
     delete [] sequence;
     delete [] bestSolution;

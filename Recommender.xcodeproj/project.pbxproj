@@ -24,6 +24,7 @@
 		46712F5817D30F1400516121 /* BrowsePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F5717D30F1400516121 /* BrowsePoiCell.m */; };
 		46712F6217D327C700516121 /* PoiDefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46712F6117D327C700516121 /* PoiDefaultIcon.png */; };
 		46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F6417D3283100516121 /* ImageCacheCenter.m */; };
+		4672B05C182B6A4400CE5AA5 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672B05B182B6A4400CE5AA5 /* Utils.m */; };
 		467AD3E817E4000C001B3C97 /* MoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467AD3E717E4000C001B3C97 /* MoreListViewController.m */; };
 		467BB2961813BBBA00B23004 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2951813BBBA00B23004 /* User.m */; };
 		467BB2991813BBBB00B23004 /* TravelPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2981813BBBB00B23004 /* TravelPlan.m */; };
@@ -124,6 +125,8 @@
 		46712F6117D327C700516121 /* PoiDefaultIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PoiDefaultIcon.png; sourceTree = "<group>"; };
 		46712F6317D3283100516121 /* ImageCacheCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheCenter.h; sourceTree = "<group>"; };
 		46712F6417D3283100516121 /* ImageCacheCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheCenter.m; sourceTree = "<group>"; };
+		4672B05A182B6A4400CE5AA5 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		4672B05B182B6A4400CE5AA5 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		467AD3E617E4000C001B3C97 /* MoreListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreListViewController.h; sourceTree = "<group>"; };
 		467AD3E717E4000C001B3C97 /* MoreListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreListViewController.m; sourceTree = "<group>"; };
 		467BB2941813BBBA00B23004 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				467F786A181228B300130FBC /* UserManager.m */,
 				46A4F60F1829FD620048C4EE /* SimulateAnnealTSP.h */,
 				46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */,
+				4672B05A182B6A4400CE5AA5 /* Utils.h */,
+				4672B05B182B6A4400CE5AA5 /* Utils.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 				469FA78517B0D5B300B34DD8 /* main.m in Sources */,
 				469FA78917B0D5B300B34DD8 /* AppDelegate.mm in Sources */,
 				467F789618123EA500130FBC /* PlanListViewController.m in Sources */,
+				4672B05C182B6A4400CE5AA5 /* Utils.m in Sources */,
 				469FA79217B0D5B300B34DD8 /* BrowseMapViewController.m in Sources */,
 				467F786B181228B300130FBC /* UserManager.m in Sources */,
 				469FA80517B0E3E500B34DD8 /* NSData+MKBase64.m in Sources */,

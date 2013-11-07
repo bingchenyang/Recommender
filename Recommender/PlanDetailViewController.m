@@ -9,6 +9,8 @@
 #import "PlanDetailViewController.h"
 #import "Poi+DianPing.h"
 #import "SimulateAnnealTSP.h"
+#import "ImageCacheCenter.h"
+#import "Utils.h"
 
 #define MAX_INTEGER 0x7fffffff
 struct MGraph {
@@ -93,7 +95,11 @@ struct MGraph {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Poi *poi = [self.travelPlan.pois objectAtIndex:indexPath.row];
-    cell.textLabel.text = poi.name;
+    cell.textLabel.text = [NSString stringWithFormat:@"%d. %@", indexPath.row + 1, poi.name];
+    cell.detailTextLabel.text = poi.address;
+//    cell.imageView.image = [[ImageCacheCenter defaultCacheCenter] fetchImageWithUrl:poi.smallPhotoUrl onCompletion:^{
+//        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    }];
     
     return cell;
 }
@@ -178,14 +184,26 @@ struct MGraph {
         [self calculateRoutes:nil];
     }
     else {
-        [SimulateAnnealTSP simulateAnneal:poisGraph.edges withSize:poisGraph.vertexNumber];
-        [SimulateAnnealTSP enumTSP:poisGraph.edges withSize:poisGraph.vertexNumber];
+        //[SimulateAnnealTSP simulateAnneal:poisGraph.edges withSize:poisGraph.vertexNumber];
+        [Utils hideProgressHUD:self];
+        [SimulateAnnealTSP enumTSP:poisGraph.edges withSize:poisGraph.vertexNumber onComplete:^(NSArray *solution) {
+            //根据solution的内容，重新排列table中cell的顺序
+            NSOrderedSet *oldSet = self.travelPlan.pois;
+            NSMutableOrderedSet *newSet = [[NSMutableOrderedSet alloc] init];
+            for (int i = 0; i < poisGraph.vertexNumber; i++) {
+                [newSet addObject:[oldSet objectAtIndex:[[solution objectAtIndex:i] integerValue]]];
+            }
+            
+            self.travelPlan.pois = newSet;
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationMiddle];
+        }];
     }
 }
 
 #pragma mark -
 - (IBAction)calculateRoutes:(id)sender {
     if ([self.poiPairs count] > 0) {
+        [Utils showProgressHUD:self withText:@"请求中..."];
         AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
         naviRequest.searchType = AMapSearchType_NaviWalking;
         PoiPair *poiPair = [self.poiPairs objectAtIndex:0];
@@ -219,5 +237,6 @@ struct MGraph {
     
     return  poiPairs;
 }
+
 
 @end

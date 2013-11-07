@@ -19,6 +19,6 @@
 
 
 // 因为结点数不多，若size小于10可考虑用枚举的方式求出最优解
-+(void) enumTSP:(const int [][20])distance withSize:(int)size;
++(void) enumTSP:(const int [][20])distance withSize:(int)size onComplete:(void(^)(NSArray *solution))complete;
 
 @end

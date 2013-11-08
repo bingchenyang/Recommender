@@ -12,10 +12,10 @@
 #import "TravelProject.h"
 #import "RecommenderDatabase.h"
 
-@interface PlanListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
+@interface BasePlanListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) Poi *poi;
 @property (nonatomic, strong) TravelProject *travelProject;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
-@property (nonatomic) BOOL isForAddingPoi;
 @end

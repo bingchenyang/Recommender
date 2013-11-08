@@ -6,16 +6,15 @@
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "ProjectListViewController.h"
+#import "BaseProjectListViewController.h"
 #import "TravelProject.h"
 #import "User+DianPing.h"
 #import "RecommenderDatabase.h"
 #import "InsertCell.h"
-#import "PlanListViewController.h"
+#import "BasePlanListViewController.h"
 
-@interface ProjectListViewController ()
+@interface BaseProjectListViewController ()
 @property (nonatomic) BOOL beganUpdates;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, strong) UIBarButtonItem *reservedRightBarButtonItem;
 @property (nonatomic, strong) NSIndexPath *fieldIndexPath;
@@ -24,14 +23,13 @@
 - (IBAction)insertNewTravelProject:(id)sender;
 @end
 
-@implementation ProjectListViewController
+@implementation BaseProjectListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.isForAddingPoi = NO;
     }
     return self;
 }
@@ -50,10 +48,6 @@
         self.managedObjectContext = document.managedObjectContext;
         self.navigationItem.rightBarButtonItem.enabled = YES;
         
-        if (!self.isForAddingPoi) {
-            NSArray *barButtonItems = [NSArray arrayWithObjects:self.editButtonItem, self.navigationItem.rightBarButtonItem, nil];
-            self.navigationItem.rightBarButtonItems = barButtonItems;
-        }
     }];
 }
 
@@ -148,12 +142,7 @@
 #pragma mark - Editing table support methods
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isForAddingPoi) {
-        return NO;
-    }
-    else {
-        return [self.fetchedResultsController.fetchedObjects count] > indexPath.row;
-    }
+    return [self.fetchedResultsController.fetchedObjects count] > indexPath.row;
 }
 
 // Override to support editing the table view.
@@ -163,7 +152,7 @@
         // Delete the row from the data source
         TravelProject *project = [self.fetchedResultsController objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:project];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
@@ -187,16 +176,11 @@
 */
 
 #pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger numberOfObjects = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];
+    if (indexPath.row == numberOfObjects) {//有n个object，就有n+1个row，但row范围应是0到n。
+        [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -268,16 +252,6 @@
 - (void)doneButtonPressed:(id)sender {
     [self.editingField resignFirstResponder];
     [self.editingField.delegate textFieldDidEndEditing:self.editingField];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toPlanListView"]) {
-        PlanListViewController *pVC = segue.destinationViewController;
-        pVC.poi = self.poi;
-        pVC.isForAddingPoi = self.isForAddingPoi;
-        pVC.travelProject = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:sender]];
-        pVC.managedObjectContext = self.managedObjectContext; //set managedObjectContext will call viewDidLoad
-    }
 }
 
 #pragma mark - UITextFieldDelegate

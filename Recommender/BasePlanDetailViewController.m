@@ -6,11 +6,12 @@
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "PlanDetailViewController.h"
+#import "BasePlanDetailViewController.h"
 #import "Poi+DianPing.h"
 #import "SimulateAnnealTSP.h"
 #import "ImageCacheCenter.h"
 #import "Utils.h"
+#import "TourMapViewController.h"
 
 #define MAX_INTEGER 0x7fffffff
 struct MGraph {
@@ -26,13 +27,13 @@ struct MGraph {
 @implementation PoiPair
 @end
 
-@interface PlanDetailViewController ()
+@interface BasePlanDetailViewController ()
 @property (nonatomic, strong) AMapSearchAPI *searchAPI;
 @property (nonatomic, strong) NSMutableOrderedSet *poiPairs;
 
 @end
 
-@implementation PlanDetailViewController {
+@implementation BasePlanDetailViewController {
     struct MGraph poisGraph;
 }
 
@@ -55,6 +56,10 @@ struct MGraph {
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSMutableArray *rightBarButtonItems = [self.navigationItem.rightBarButtonItems mutableCopy];
+    UIBarButtonItem *showInMapBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showInMap:)];
+    [rightBarButtonItems addObject:showInMapBarButtonItem];
+    self.navigationItem.rightBarButtonItems = rightBarButtonItems;
     
     self.poiPairs = [self poiPairsFromPois:self.travelPlan.pois];
     
@@ -238,5 +243,10 @@ struct MGraph {
     return  poiPairs;
 }
 
+- (void)showInMap:(id)sender {
+    TourMapViewController *tMVC = [[TourMapViewController alloc] init];
+    tMVC.pois = self.travelPlan.pois;
+    [self.navigationController pushViewController:tMVC animated:YES];
+}
 
 @end

@@ -6,28 +6,23 @@
 //  Copyright (c) 2013 Benson. All rights reserved.
 //
 
-#import "PlanListViewController.h"
+#import "BasePlanListViewController.h"
 #import "TravelPlan.h"
-#import "PlanDetailViewController.h"
+#import "BasePlanDetailViewController.h"
 
-#define kButtonIndexCancel  0
-#define kButtonIndexConfirm 1
-
-@interface PlanListViewController ()
+@interface BasePlanListViewController ()
 @property (nonatomic) BOOL beganUpdates;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
-@implementation PlanListViewController
+@implementation BasePlanListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.isForAddingPoi = NO;
     }
     return self;
 }
@@ -52,10 +47,10 @@
         [self.tableView reloadData];
     }
     
-    if (!self.isForAddingPoi) {
-        NSArray *barButtonItems = [NSArray arrayWithObjects:self.editButtonItem, self.navigationItem.rightBarButtonItem, nil];
-        self.navigationItem.rightBarButtonItems = barButtonItems;
-    }
+//    if (!self.isForAddingPoi) {
+//        NSArray *barButtonItems = [NSArray arrayWithObjects:self.editButtonItem, self.navigationItem.rightBarButtonItem, nil];
+//        self.navigationItem.rightBarButtonItems = barButtonItems;
+//    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,33 +140,11 @@
 }
 
 #pragma mark - UITalbleViewDelegate Methods
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isForAddingPoi) {
-        self.selectedIndexPath = indexPath;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"添加景点"
-                                                        message:@"确认添加景点"
-                                                       delegate:self
-                                              cancelButtonTitle:@"取消"
-                                              otherButtonTitles:@"确定", nil];
-        [alert show];
-    }
-    else {
-        // 应该navigate到PlanDetaiViewController
-        [self performSegueWithIdentifier:@"toPlanDetailView" sender:indexPath];
-    }
-}
-
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
-     if (self.isForAddingPoi) {
-         return NO;
-     }
-     else {
-         return YES;
-     }
+/*
+   该方法已经在子类里覆盖
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  }
+*/
 
  // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -273,14 +246,6 @@
 
 #pragma mark - 
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toPlanDetailView"]) {
-        PlanDetailViewController *pDVC = segue.destinationViewController;
-        pDVC.travelPlan = [self.fetchedResultsController objectAtIndexPath:sender];
-        pDVC.managedObjectContext = self.managedObjectContext;
-    }
-}
-
 - (IBAction)addAnotherDay:(id)sender {
     TravelPlan *lastPlan = [self.fetchedResultsController.fetchedObjects lastObject];
     
@@ -289,22 +254,5 @@
     travelPlan.travelProject = self.travelProject;
 }
 
-#pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == kButtonIndexConfirm) {
-        TravelPlan *plan = [self.fetchedResultsController objectAtIndexPath:self.selectedIndexPath];
-        
-        // TODO:这里有apple的bug
-        NSMutableOrderedSet *tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:plan.pois];
-        [tempSet addObject:self.poi];
-        plan.pois = tempSet;
-        
-        NSError *error;
-        [self.managedObjectContext save:&error];
-        if (error) {
-            NSLog(@"%@", error);
-        }
-    }
-}
 
 @end

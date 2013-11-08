@@ -8,7 +8,7 @@
 
 #import "BrowseWebViewController.h"
 #import "MBProgressHUD.h"
-#import "ProjectListViewController.h"
+#import "BrowseProjectListViewController.h"
 
 @interface BrowseWebViewController ()
 
@@ -36,21 +36,10 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toProjectListView"]) {
-        ProjectListViewController *projectListVC = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"ToBrowseProjectListView"]) {
+        BrowseProjectListViewController *projectListVC = segue.destinationViewController;
         projectListVC.poi = self.poi;
-        projectListVC.isForAddingPoi = YES;
     }
-}
-
-- (IBAction)addToList:(id)sender {
-//    PlanListViewController *planListVC = [[PlanListViewController alloc] init];
-//    planListVC.poi = self.poi;
-//    [self presentViewController:planListVC animated:YES completion:^{
-//        ;
-//    }];
-    
-    [self performSegueWithIdentifier:@"toProjectListView" sender:self];
 }
 
 - (void)didReceiveMemoryWarning

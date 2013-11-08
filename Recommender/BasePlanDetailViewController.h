@@ -10,7 +10,7 @@
 #import "TravelPlan.h"
 #import <AMapSearchKit/AMapSearchAPI.h>
 
-@interface PlanDetailViewController : UITableViewController <NSFetchedResultsControllerDelegate, AMapSearchDelegate>
+@interface BasePlanDetailViewController : UITableViewController <NSFetchedResultsControllerDelegate, AMapSearchDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) TravelPlan *travelPlan;
 

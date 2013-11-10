@@ -62,6 +62,30 @@ struct MGraph {
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITableViewDelegate Methods
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableOrderedSet *tmpSet = [self.travelPlan.pois mutableCopy];
+        [tmpSet removeObjectAtIndex:indexPath.row];
+        self.travelPlan.pois = tmpSet;
+        
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        [tableView reloadData];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        
+    }
+}
+
 #pragma mark -
 - (IBAction)calculateRoutes:(id)sender {
     if ([self.poiPairs count] > 0) {

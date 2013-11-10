@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchAPI.h>
 
-@interface TourMapViewController : UIViewController <MAMapViewDelegate>
+@interface TourMapViewController : UIViewController <MAMapViewDelegate, AMapSearchDelegate>
 @property (nonatomic, strong) NSOrderedSet *pois;
 
 @end

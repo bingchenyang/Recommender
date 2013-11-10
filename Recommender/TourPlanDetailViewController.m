@@ -7,6 +7,7 @@
 //
 
 #import "TourPlanDetailViewController.h"
+#import "TourMapViewController.h"
 
 @interface TourPlanDetailViewController ()
 
@@ -40,4 +41,11 @@
     return NO;
 }
 
+#pragma mark - 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ToTourMapView"]) {
+        TourMapViewController *tMVC = segue.destinationViewController;
+        tMVC.pois = self.travelPlan.pois;
+    }
+}
 @end

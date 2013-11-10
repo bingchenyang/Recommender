@@ -8,6 +8,6 @@
 
 #import "BasePlanDetailViewController.h"
 
-@interface PlanPlanDetailViewController : BasePlanDetailViewController
+@interface PlanPlanDetailViewController : BasePlanDetailViewController <AMapSearchDelegate>
 
 @end

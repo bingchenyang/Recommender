@@ -8,11 +8,10 @@
 
 #import "BrowseMapViewController.h"
 #import "DianPingEngine.h"
-#import "MapUtils.h"
 #import "DPPoiAnnotation.h"
-#import "HelperMethods.h"
 #import "BrowseWebViewController.h"
 #import "BrowseRootViewController.h"
+#import "Utils.h"
 
 #define kDianPingShowPoiDetail @"DianPingShowPoiDetail"
 
@@ -65,33 +64,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Helper Methods
-- (DPPoiAnnotation *)annotationForBusiness:(NSDictionary *)business {
-    DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
-    double latitude = [[business valueForKey:@"latitude"] doubleValue];
-    double longitude = [[business valueForKey:@"longitude"] doubleValue];
-    annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-    annotation.title = [business valueForKey:@"name"];
-    annotation.subtitle = [business valueForKey:@"address"];
-    annotation.pid = [business valueForKey:@"business_id"];
-    annotation.photoURL = [business valueForKey:@"s_photo_url"];
-    annotation.ratingImgURL = [business valueForKey:@"rating_s_img_url"];
-    
-    return annotation;
-}
-
-- (DPPoiAnnotation *)annotationForPoi:(Poi *)poi {
-    DPPoiAnnotation *annotation = [[DPPoiAnnotation alloc] init];
-    annotation.poi = poi;
-    annotation.coordinate = CLLocationCoordinate2DMake([poi.latitude floatValue], [poi.longitude floatValue]);
-    annotation.title = poi.name;
-    annotation.subtitle = poi.address;
-    annotation.photoURL = poi.smallPhotoUrl;
-    annotation.ratingImgURL = poi.ratingSmallImageUrl;
-    
-    return annotation;
-}
-
 #pragma mark - MAMapViewDelegate
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id)annotation {
     if ([annotation isKindOfClass:[DPPoiAnnotation class]])
@@ -142,10 +114,10 @@
 - (void)PoiStreamDelegateFetchPoisDidFinish:(PoiStream *)poiStream {
     self.poiStream = poiStream;
     for (Poi *poi in poiStream.pois) {
-        DPPoiAnnotation *annotation = [self annotationForPoi:poi];
+        DPPoiAnnotation *annotation = [Utils annotationForPoi:poi];
         [self.mapView addAnnotation:annotation];
     }
-    [MapUtils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
+    [Utils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
 }
 
 #pragma mark - 

@@ -7,7 +7,6 @@
 //
 
 #import "BrowseRootViewController.h"
-#import "HelperMethods.h"
 #import "BrowseWebViewController.h"
 #import "BrowseMapViewController.h"
 

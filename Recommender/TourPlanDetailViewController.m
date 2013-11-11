@@ -8,6 +8,7 @@
 
 #import "TourPlanDetailViewController.h"
 #import "TourMapViewController.h"
+#import "Utils.h"
 
 @interface TourPlanDetailViewController ()
 
@@ -28,8 +29,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.naviTypeSegment addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.naviTypeSegment.selectedSegmentIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:kNaviTypeSegmentSelectedIndex] integerValue];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -41,7 +47,7 @@
     return NO;
 }
 
-#pragma mark - 
+#pragma mark
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ToTourMapView"]) {
         TourMapViewController *tMVC = segue.destinationViewController;

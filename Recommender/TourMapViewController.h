@@ -13,4 +13,5 @@
 @interface TourMapViewController : UIViewController <MAMapViewDelegate, AMapSearchDelegate>
 @property (nonatomic, strong) NSOrderedSet *pois;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *naviTypeSegment;
 @end

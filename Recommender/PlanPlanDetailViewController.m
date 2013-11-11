@@ -9,15 +9,8 @@
 #import "PlanPlanDetailViewController.h"
 #import "Utils.h"
 #import "Poi+DianPing.h"
-#import "SimulateAnnealTSP.h"
 #import "PoiPair.h"
 
-#define MAX_INTEGER 0x7fffffff
-struct MGraph {
-    int vertexNumber;
-    int edgesNumber;
-    int edges[20][20];
-};
 
 @interface PlanPlanDetailViewController ()
 @property (nonatomic, strong) AMapSearchAPI *searchAPI;
@@ -26,7 +19,7 @@ struct MGraph {
 @end
 
 @implementation PlanPlanDetailViewController {
-    struct MGraph poisGraph;
+    struct MGraph *p_poisGraph;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,15 +38,19 @@ struct MGraph {
     self.searchAPI = [[AMapSearchAPI alloc] initWithSearchKey:@"a7d8df80ccf7c8d83afdf083fdef34be" Delegate:self];
     
     self.poiPairs = [self poiPairsFromPois:self.travelPlan.pois];
-    poisGraph.vertexNumber = self.travelPlan.pois.count;
-    poisGraph.edgesNumber = self.poiPairs.count;
-    for (int i = 0; i < 20; i++) {
-        for (int j = 0; j < 20; j++) {
-            if (i != j) {
-                poisGraph.edges[i][j] = MAX_INTEGER;
-            }
-        }
-    }
+    [self.naviTypeSegment addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+    
+    [Utils initPoisGraph];
+    p_poisGraph = [Utils GetPoisGraph];
+    p_poisGraph->edgesNumber = self.poiPairs.count;
+    p_poisGraph->vertexNumber = self.travelPlan.pois.count;
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.naviTypeSegment.selectedSegmentIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:kNaviTypeSegmentSelectedIndex] integerValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,7 +88,17 @@ struct MGraph {
     if ([self.poiPairs count] > 0) {
         [Utils showProgressHUD:self withText:@"请求中..."];
         AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
-        naviRequest.searchType = AMapSearchType_NaviWalking;
+        
+        if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeDrive) {
+            naviRequest.searchType = AMapSearchType_NaviDrive;
+        }
+        else if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeBus) {
+            naviRequest.searchType = AMapSearchType_NaviBus;
+        }
+        else if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeWalk) {
+            naviRequest.searchType = AMapSearchType_NaviWalking;
+        }
+        
         PoiPair *poiPair = [self.poiPairs objectAtIndex:0];
         Poi *origin = poiPair.origin;
         Poi *destination = poiPair.destination;
@@ -124,6 +131,22 @@ struct MGraph {
     return  poiPairs;
 }
 
+-(void)segmentAction:(UISegmentedControl *)segmentedControl {
+    NSInteger oldIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:kNaviTypeSegmentSelectedIndex] integerValue];
+    NSInteger newIndex = segmentedControl.selectedSegmentIndex;
+    
+    if (oldIndex == NaviTypeOther) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"改变该值会使得自定义数据丢失" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        [alert show];
+    }
+    else {
+        if (self.poiPairs.count == 0) {
+            self.poiPairs = [self poiPairsFromPois:self.travelPlan.pois];
+        }
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:newIndex] forKey:kNaviTypeSegmentSelectedIndex];
+    }
+}
+
 #pragma mark - AMapSearchDelegate Methods
 
 - (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response {
@@ -135,20 +158,27 @@ struct MGraph {
     PoiPair *poiPair = [self.poiPairs objectAtIndex:0];
     int originIndex = [self.travelPlan.pois indexOfObject:poiPair.origin];
     int destinationIndex = [self.travelPlan.pois indexOfObject:poiPair.destination];
-    poisGraph.edges[originIndex][destinationIndex] = 0;
-    if (response.route.transits.count != 0) {
+    p_poisGraph->edges[originIndex][destinationIndex] = 0;
+    if (response.route.transits.count != 0) {// 公交换乘方案
+        NSInteger minDuration = NSIntegerMax;
         for (AMapTransit *transit in response.route.transits) {
-            poisGraph.edges[originIndex][destinationIndex] += transit.duration;
+            if (transit.duration < minDuration) {
+                minDuration = transit.duration;
+            }
         }
+        p_poisGraph->edges[originIndex][destinationIndex] = minDuration;
     }
-    else if (response.route.paths.count != 0) {
+    else if (response.route.paths.count != 0) {// 驾车、步行方案
+        NSInteger minDuration = NSIntegerMax;
         for (AMapPath *path in response.route.paths) {
-            poisGraph.edges[originIndex][destinationIndex] += path.duration;
+            if (path.duration < minDuration) {
+                minDuration = path.duration;
+            }
         }
+        p_poisGraph->edges[originIndex][destinationIndex] = minDuration;
     }
     [self.poiPairs removeObjectAtIndex:0];
     
-    // handle response
     NSLog(@"%d", [self.poiPairs count]);
     
     
@@ -157,13 +187,12 @@ struct MGraph {
         [self calculateRoutes:nil];
     }
     else {
-        //[SimulateAnnealTSP simulateAnneal:poisGraph.edges withSize:poisGraph.vertexNumber];
         [Utils hideProgressHUD:self];
-        [SimulateAnnealTSP enumTSP:poisGraph.edges withSize:poisGraph.vertexNumber onComplete:^(NSArray *solution) {
+        [Utils enumTSPWithCompletionHandler:^(NSArray *solution) {
             //根据solution的内容，重新排列table中cell的顺序
             NSOrderedSet *oldSet = self.travelPlan.pois;
             NSMutableOrderedSet *newSet = [[NSMutableOrderedSet alloc] init];
-            for (int i = 0; i < poisGraph.vertexNumber; i++) {
+            for (int i = 0; i < p_poisGraph->vertexNumber; i++) {
                 [newSet addObject:[oldSet objectAtIndex:[[solution objectAtIndex:i] integerValue]]];
             }
             
@@ -171,6 +200,15 @@ struct MGraph {
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationMiddle];
         }];
     }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+}
+
+- (void)alertViewCancel:(UIAlertView *)alertView {
+    
 }
 
 @end

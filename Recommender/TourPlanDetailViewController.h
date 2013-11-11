@@ -9,5 +9,6 @@
 #import "BasePlanDetailViewController.h"
 
 @interface TourPlanDetailViewController : BasePlanDetailViewController
+@property (strong, nonatomic) IBOutlet UISegmentedControl *naviTypeSegment;
 
 @end

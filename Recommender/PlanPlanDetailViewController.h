@@ -8,6 +8,7 @@
 
 #import "BasePlanDetailViewController.h"
 
-@interface PlanPlanDetailViewController : BasePlanDetailViewController <AMapSearchDelegate>
+@interface PlanPlanDetailViewController : BasePlanDetailViewController <AMapSearchDelegate, UIAlertViewDelegate>
+@property (strong, nonatomic) IBOutlet UISegmentedControl *naviTypeSegment;
 
 @end

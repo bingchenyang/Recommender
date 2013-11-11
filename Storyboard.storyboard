@@ -212,9 +212,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="3" id="rGv-QZ-yef">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="驾车"/>
+                                <segment title="公交"/>
+                                <segment title="步行"/>
+                                <segment title="自定义" enabled="NO"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="mfA-CQ-KKE" detailTextLabel="fps-ls-8P0" style="IBUITableViewCellStyleSubtitle" id="dTY-6f-c3x">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -245,12 +255,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="gb8-rs-OUc">
-                        <barButtonItem key="rightBarButtonItem" title="计算" id="MlG-Zf-7Ze">
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" title="自动规划" id="MlG-Zf-7Ze">
                             <connections>
                                 <action selector="calculateRoutes:" destination="zlP-Z2-qFJ" id="Mvj-hK-8qu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="naviTypeSegment" destination="rGv-QZ-yef" id="pju-LK-unC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43z-Wi-raA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,9 +277,24 @@
                     <view key="view" contentMode="scaleToFill" id="wg1-YU-2dZ">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="KR1-DC-sLV">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="驾车" enabled="NO"/>
+                                    <segment title="公交" enabled="NO"/>
+                                    <segment title="步行" enabled="NO"/>
+                                    <segment title="自定义" enabled="NO"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="f1X-fI-4vS"/>
+                    <connections>
+                        <outlet property="naviTypeSegment" destination="KR1-DC-sLV" id="hsk-Ga-MKP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4X-md-cFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -734,6 +763,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="6hK-eH-NFM">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" title="添加1天" id="bbg-Hs-gH0">
                             <connections>
                                 <action selector="addAnotherDay:" destination="yPs-en-wSa" id="HYc-hR-T5F"/>
@@ -874,9 +904,19 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="Eug-GU-wBy">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="驾车" enabled="NO"/>
+                                <segment title="公交" enabled="NO"/>
+                                <segment title="步行" enabled="NO"/>
+                                <segment title="自定义" enabled="NO"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="btq-98-Mxw" detailTextLabel="kQh-Qm-xD3" style="IBUITableViewCellStyleSubtitle" id="wrW-Fk-MSw">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -907,6 +947,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="MPX-cp-aaB">
+                        <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" title="地图上查看" id="a8a-tg-eXg">
                             <connections>
                                 <action selector="showInMap:" destination="CFc-gF-GKL" id="B7v-JT-Xgl"/>
@@ -914,6 +955,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="naviTypeSegment" destination="Eug-GU-wBy" id="hRR-9a-8pf"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vWU-eE-kSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

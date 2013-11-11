@@ -8,7 +8,6 @@
 
 #import "BasePlanDetailViewController.h"
 #import "Poi+DianPing.h"
-#import "SimulateAnnealTSP.h"
 #import "ImageCacheCenter.h"
 #import "Utils.h"
 #import "TourMapViewController.h"

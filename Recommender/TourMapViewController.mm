@@ -39,7 +39,10 @@
     self.searchAPI = [[AMapSearchAPI alloc] initWithSearchKey:@"a7d8df80ccf7c8d83afdf083fdef34be" Delegate:self];
     
     self.mapView = [[MAMapView alloc] init];
+    self.mapView.rotateCameraEnabled = NO;
+    self.mapView.rotateEnabled = NO;
     [self.view addSubview:self.mapView];
+    [self.view bringSubviewToFront:self.naviTypeSegment];
     
     self.poiPairs = [self poiPairsFromPois:self.pois];
     
@@ -47,13 +50,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.naviTypeSegment.selectedSegmentIndex = [[[NSUserDefaults standardUserDefaults] valueForKey:kNaviTypeSegmentSelectedIndex] integerValue];
     self.mapView.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.mapView.frame = self.view.bounds;
+    CGRect frame = self.view.bounds;
+    frame.origin.y += self.naviTypeSegment.frame.size.height;
+    frame.size.height -= self.naviTypeSegment.frame.size.height;
+    self.mapView.frame = frame;
     
     [self requestForNextPolylines];
     
@@ -61,12 +67,14 @@
         DPPoiAnnotation *annotation = [Utils annotationForPoi:poi];
         [self.mapView addAnnotation:annotation];
     }
+    [Utils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"receive memory warning in: %@", [self class]);
 }
 
 #pragma mark
@@ -94,7 +102,15 @@
 - (void)requestForNextPolylines {
     if (self.poiPairs.count > 0) {
         AMapNavigationSearchRequest *naviRequest= [[AMapNavigationSearchRequest alloc] init];
-        naviRequest.searchType = AMapSearchType_NaviWalking;
+        if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeDrive) {
+            naviRequest.searchType = AMapSearchType_NaviDrive;
+        }
+        else if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeBus) {
+            naviRequest.searchType = AMapSearchType_NaviBus;
+        }
+        else if (self.naviTypeSegment.selectedSegmentIndex == NaviTypeWalk) {
+            naviRequest.searchType = AMapSearchType_NaviWalking;
+        }
         //每次处理完self.poiPairs第一个object会被移除
         PoiPair *poiPair = [self.poiPairs objectAtIndex:0];
         Poi *origin = poiPair.origin;
@@ -124,18 +140,52 @@
 #pragma mark - AMapSearchDelegate Methods
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response {
     //处理返回结果
-    for (AMapStep *step in [[response.route.paths objectAtIndex:0] steps]) {
-        MAPolyline *polyline = [self polylineFromString:step.polyline];
-        //TODO:注意，当前将所有的polyline都添加到mapView里了，这样当mapView放大后，需要渲染的object太多，会导致性能的下降，严重时app会crash。
-        [self.mapView addOverlay:polyline];
+    if (response.route.paths.count != 0) {
+        int index = 0;
+        NSInteger minDuration = NSIntegerMax;
+        for (int i = 0; i < response.route.paths.count; i++) {
+            AMapPath *path = [response.route.paths objectAtIndex:i];
+            if (path.duration < minDuration) {
+                minDuration = path.duration;
+                index = i;
+            }
+        }
+        // 花费时间最少的path
+        AMapPath *leastDurationPath = [response.route.paths objectAtIndex:index];
+        for (AMapStep *step in leastDurationPath.steps) {
+            MAPolyline *polyline = [self polylineFromString:step.polyline];
+            [self.mapView addOverlay:polyline];
+        }
     }
+    else if (response.route.transits.count != 0) {
+        int index = 0;
+        NSInteger minDuration = NSIntegerMax;
+        for (int i = 0; i < response.route.transits.count; i++) {
+            AMapTransit *transit = [response.route.transits objectAtIndex:i];
+            if (transit.duration < minDuration) {
+                minDuration = transit.duration;
+                index = i;
+            }
+        }
+        
+        AMapTransit *leastDurationTransit = [response.route.transits objectAtIndex:index];
+        for (AMapSegment *segment in leastDurationTransit.segments) {
+            AMapWalking *walking = segment.walking;
+            for (AMapStep *step in walking.steps) {
+                MAPolyline *polyline = [self polylineFromString:step.polyline];
+                [self.mapView addOverlay:polyline];
+            }
+            AMapBusLine *busline = segment.busline;
+            MAPolyline *polyline = [self polylineFromString:busline.polyline];
+            [self.mapView addOverlay:polyline];
+        }
+    }
+     
     [self.poiPairs removeObjectAtIndex:0];
     
+    //TODO:change count > 0 back
     if (self.poiPairs.count > 0) {
         [self requestForNextPolylines];
-    }
-    else {
-        [Utils zoomMapView:self.mapView ToFitAnnotations:self.mapView.overlays];
     }
 }
 

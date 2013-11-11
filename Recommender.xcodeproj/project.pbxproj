@@ -36,7 +36,7 @@
 		46712F5817D30F1400516121 /* BrowsePoiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F5717D30F1400516121 /* BrowsePoiCell.m */; };
 		46712F6217D327C700516121 /* PoiDefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46712F6117D327C700516121 /* PoiDefaultIcon.png */; };
 		46712F6517D3283100516121 /* ImageCacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 46712F6417D3283100516121 /* ImageCacheCenter.m */; };
-		4672B05C182B6A4400CE5AA5 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4672B05B182B6A4400CE5AA5 /* Utils.m */; };
+		4672B05C182B6A4400CE5AA5 /* Utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4672B05B182B6A4400CE5AA5 /* Utils.mm */; };
 		4672B07C182B954700CE5AA5 /* TourMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4672B07B182B954700CE5AA5 /* TourMapViewController.mm */; };
 		467AD3E817E4000C001B3C97 /* MoreListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 467AD3E717E4000C001B3C97 /* MoreListViewController.m */; };
 		467BB2961813BBBA00B23004 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 467BB2951813BBBA00B23004 /* User.m */; };
@@ -96,7 +96,6 @@
 		469FA81317B0E41300B34DD8 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469FA81217B0E41300B34DD8 /* ImageIO.framework */; };
 		469FA81617B0E4A800B34DD8 /* DianPingEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA81517B0E4A800B34DD8 /* DianPingEngine.m */; };
 		469FA82917B0E9CF00B34DD8 /* DianPingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */; };
-		46A4F6111829FD620048C4EE /* SimulateAnnealTSP.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */; };
 		46D0504517ED6429002B0891 /* RecommenderDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 46D0504417ED6429002B0891 /* RecommenderDatabase.m */; };
 		46F359C617EFFF78000887DB /* InsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F359C517EFFF78000887DB /* InsertCell.m */; };
 /* End PBXBuildFile section */
@@ -160,7 +159,7 @@
 		46712F6317D3283100516121 /* ImageCacheCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCacheCenter.h; sourceTree = "<group>"; };
 		46712F6417D3283100516121 /* ImageCacheCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCacheCenter.m; sourceTree = "<group>"; };
 		4672B05A182B6A4400CE5AA5 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		4672B05B182B6A4400CE5AA5 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		4672B05B182B6A4400CE5AA5 /* Utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Utils.mm; sourceTree = "<group>"; };
 		4672B07A182B954700CE5AA5 /* TourMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TourMapViewController.h; sourceTree = "<group>"; };
 		4672B07B182B954700CE5AA5 /* TourMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TourMapViewController.mm; sourceTree = "<group>"; };
 		467AD3E617E4000C001B3C97 /* MoreListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreListViewController.h; sourceTree = "<group>"; };
@@ -259,8 +258,6 @@
 		469FA81517B0E4A800B34DD8 /* DianPingEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingEngine.m; sourceTree = "<group>"; };
 		469FA82717B0E9CF00B34DD8 /* DianPingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DianPingAPI.h; sourceTree = "<group>"; };
 		469FA82817B0E9CF00B34DD8 /* DianPingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DianPingAPI.m; sourceTree = "<group>"; };
-		46A4F60F1829FD620048C4EE /* SimulateAnnealTSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateAnnealTSP.h; sourceTree = "<group>"; };
-		46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SimulateAnnealTSP.mm; sourceTree = "<group>"; };
 		46D0504317ED6429002B0891 /* RecommenderDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommenderDatabase.h; sourceTree = "<group>"; };
 		46D0504417ED6429002B0891 /* RecommenderDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommenderDatabase.m; sourceTree = "<group>"; };
 		46F359C417EFFF78000887DB /* InsertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCell.h; sourceTree = "<group>"; };
@@ -606,10 +603,8 @@
 				46D0504417ED6429002B0891 /* RecommenderDatabase.m */,
 				467F7869181228B300130FBC /* UserManager.h */,
 				467F786A181228B300130FBC /* UserManager.m */,
-				46A4F60F1829FD620048C4EE /* SimulateAnnealTSP.h */,
-				46A4F6101829FD620048C4EE /* SimulateAnnealTSP.mm */,
 				4672B05A182B6A4400CE5AA5 /* Utils.h */,
-				4672B05B182B6A4400CE5AA5 /* Utils.m */,
+				4672B05B182B6A4400CE5AA5 /* Utils.mm */,
 				46969432182DE3520097707B /* PoiPair.h */,
 				46969433182DE3520097707B /* PoiPair.m */,
 			);
@@ -739,7 +734,7 @@
 				469FA78917B0D5B300B34DD8 /* AppDelegate.mm in Sources */,
 				467F789618123EA500130FBC /* BasePlanListViewController.m in Sources */,
 				4608591D182CDABF00FB05DD /* TourPlanListViewController.m in Sources */,
-				4672B05C182B6A4400CE5AA5 /* Utils.m in Sources */,
+				4672B05C182B6A4400CE5AA5 /* Utils.mm in Sources */,
 				469FA79217B0D5B300B34DD8 /* BrowseMapViewController.m in Sources */,
 				467F786B181228B300130FBC /* UserManager.m in Sources */,
 				466853CC182F25EB004A1C9A /* UIImage+DPAnnotation.m in Sources */,
@@ -783,7 +778,6 @@
 				4672B07C182B954700CE5AA5 /* TourMapViewController.mm in Sources */,
 				46650B3017D870EA000464B5 /* MBProgressHUD.m in Sources */,
 				46650B3417D87FB8000464B5 /* BaseProjectListViewController.m in Sources */,
-				46A4F6111829FD620048C4EE /* SimulateAnnealTSP.mm in Sources */,
 				464E7590182C81930033DF7D /* PlanProjectListViewController.m in Sources */,
 				467BB2A21813BBBB00B23004 /* Transportation.m in Sources */,
 				463E28D217ED7EE200A50BF8 /* Region+DianPing.m in Sources */,

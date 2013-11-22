@@ -39,9 +39,7 @@
     [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.poiStream = [[PoiStream alloc] init];
     self.poiStream.delegate = self;
-    [self.refreshControl beginRefreshing];
-    [self.poiStream fetchPois];
-    
+    [self refresh];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

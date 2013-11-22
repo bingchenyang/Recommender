@@ -11,13 +11,14 @@
 #import "Poi+DianPing.m"
 #import "Utils.h"
 #import "UIImage+DPAnnotation.h"
+#import "TourNaviDescriptionViewController.h"
 
 @interface TourMapViewController ()
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *searchAPI;
 
 @property (nonatomic, strong) NSMutableOrderedSet *poiPairs;
-
+@property (nonatomic, strong) NSMutableArray *routes;
 @end
 
 @implementation TourMapViewController
@@ -46,6 +47,12 @@
     
     self.poiPairs = [self poiPairsFromPois:self.pois];
     
+    self.routes = [NSMutableArray array];
+    
+    for (Poi *poi in self.pois) {
+        DPPoiAnnotation *annotation = [Utils annotationForPoi:poi];
+        [self.mapView addAnnotation:annotation];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,10 +70,6 @@
     
     [self requestForNextPolylines];
     
-    for (Poi *poi in self.pois) {
-        DPPoiAnnotation *annotation = [Utils annotationForPoi:poi];
-        [self.mapView addAnnotation:annotation];
-    }
     [Utils zoomMapView:self.mapView ToFitAnnotations:self.mapView.annotations];
 }
 
@@ -136,6 +139,14 @@
     delete [] coordinates;
     return polyline;
 }
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ToTourNaviDescriptionView"]) {
+        TourNaviDescriptionViewController *tNDVC = segue.destinationViewController;
+        tNDVC.routes = self.routes;
+        tNDVC.pois = self.pois;
+    }
+}
 
 #pragma mark - AMapSearchDelegate Methods
 - (void)onNavigationSearchDone:(AMapNavigationSearchRequest *)request response:(AMapNavigationSearchResponse *)response {
@@ -152,6 +163,7 @@
         }
         // 花费时间最少的path
         AMapPath *leastDurationPath = [response.route.paths objectAtIndex:index];
+        [self.routes addObject:leastDurationPath];
         for (AMapStep *step in leastDurationPath.steps) {
             MAPolyline *polyline = [self polylineFromString:step.polyline];
             [self.mapView addOverlay:polyline];
@@ -169,6 +181,7 @@
         }
         
         AMapTransit *leastDurationTransit = [response.route.transits objectAtIndex:index];
+        [self.routes addObject:leastDurationTransit];
         for (AMapSegment *segment in leastDurationTransit.segments) {
             AMapWalking *walking = segment.walking;
             for (AMapStep *step in walking.steps) {

@@ -19,6 +19,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sEngine = [[self alloc] init];
+        //[sEngine useCache];
     });
     
     return sEngine;

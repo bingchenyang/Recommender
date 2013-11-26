@@ -10,5 +10,7 @@
 
 @interface UIImage (DPAnnotation)
 + (id)imageWithNumber:(NSInteger)num;
++ (UIImage *)userLocationImage:(CGFloat)radians;
+- (UIImage *)imageRotatedByRadians:(CGFloat)radians;
 
 @end

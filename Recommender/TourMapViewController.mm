@@ -202,7 +202,8 @@
     }
 }
 
-#pragma mark - MAMapDelegate Methods
+#pragma mark - MAMapViewDelegate Methods
+
 - (MAOverlayView *)mapView:(MAMapView *)mapView viewForOverlay:(id<MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAPolyline class]]) {
         MAPolylineView *polylineView = [[MAPolylineView alloc] initWithOverlay:overlay];

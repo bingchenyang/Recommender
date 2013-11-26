@@ -122,7 +122,8 @@ static struct MGraph poisGraph;
 }
 
 #pragma mark - 模拟退火求TSP
-+ (void)simulateAnneal:(const int [][20])distance withSize:(int)size {
++ (void)simulateAnneal:(const int [][20])distance withSize:(int)size onComplete:(void (^)(NSArray *))complete {
+    NSDate *beginTime = [NSDate date];
     double T = 500; //系统温度
     double value = 0;
     int *sequence = new int[size];
@@ -162,9 +163,14 @@ static struct MGraph poisGraph;
         }
     }
     
+    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:size];
     for (int i = 0; i < size; i++) {
-        printf("%i\n", sequence[i]);
+        [array addObject:[NSNumber numberWithInt:sequence[i]]];
     }
+    
+    NSDate *endTime = [NSDate date];
+    NSLog(@"计算耗时: %f", [endTime timeIntervalSinceDate:beginTime]);
+    complete(array);
     
     delete [] sequence;
 }
@@ -222,6 +228,7 @@ static struct MGraph poisGraph;
         bestSolution[i] = sequence[i];
     }
     int count = 0;
+    NSDate *beginTime = [NSDate date];
     while (std::next_permutation(sequence, sequence+size)) {
         count++;
         if ([self getValue:distance ofSequence:sequence withSize:size] < [self getValue:distance ofSequence:bestSolution withSize:size]) {
@@ -240,7 +247,9 @@ static struct MGraph poisGraph;
     for (int i = 0; i < size; i++) {
         [array addObject:[NSNumber numberWithInt:bestSolution[i]]];
     }
-    
+    NSDate *endTime = [NSDate date];
+    NSLog(@"全排列数量: %d", count);
+    NSLog(@"计算耗时: %f秒", [endTime timeIntervalSinceDate:beginTime]);
     complete(array);
     
     delete [] sequence;
@@ -262,6 +271,12 @@ static struct MGraph poisGraph;
 
 + (void)enumTSPWithCompletionHandler:(void (^)(NSArray *))complete {
     [self enumTSP:poisGraph.edges withSize:poisGraph.vertexNumber onComplete:^(NSArray *solution) {
+        complete(solution);
+    }];
+}
+
++ (void)SimulateAnnealTSPWithCompletionHandler:(void (^)(NSArray *))complete {
+    [self simulateAnneal:poisGraph.edges withSize:poisGraph.vertexNumber onComplete:^(NSArray *solution) {
         complete(solution);
     }];
 }

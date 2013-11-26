@@ -49,6 +49,7 @@ enum NaviType {
 //+ (void) simulateAnneal:(const int [][20])distance withSize:(int)size;
 
 + (void) enumTSPWithCompletionHandler:(void(^)(NSArray *solution))complete;
++ (void) SimulateAnnealTSPWithCompletionHandler:(void(^)(NSArray *solution))complete;
 /************************************/
 
 @end

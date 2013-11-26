@@ -59,4 +59,36 @@
     }];
 }
 
+- (void)searchPoiWithKeywords:(NSString *)keywords type:(NSInteger)type {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"keyword": keywords, @"city": @"上海", @"platform": @2, @"sort": @(DianPingSortTypeDefault)}];
+    
+    switch (type) {
+        case kSelectedIndexPoi:
+            [params setValue:@"景点" forKey:@"category"];
+            break;
+        case kSelectedIndexHotel:
+            [params setValue:@"酒店" forKey:@"category"];
+            break;
+        case kSelectedIndexResturant:
+            [params setValue:@"美食" forKey:@"category"];
+        default:
+            break;
+    }
+    NSString *operationPath = [DianPingAPI serializeURL:FIND_BUSINESS_API params:params];
+    DianPingEngine *engine = [DianPingEngine sharedEngine];
+    MKNetworkOperation *searchOp = [engine operationWithPath:operationPath];
+    [searchOp addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        NSString *status = completedOperation.responseJSON[@"status"];
+        if ([status isEqualToString:@"OK"]) {
+            [self handlePoiResponse:completedOperation.responseJSON[@"businesses"]];
+            //[self.delegate PoiStreamDelegateFetchPoisDidFinish:self];
+        } else {
+            // handle error;
+        }
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        
+    }];
+    
+    [engine enqueueOperation:searchOp];
+}
 @end

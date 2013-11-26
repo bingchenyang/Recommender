@@ -11,6 +11,7 @@
 #import "Poi+DianPing.h"
 #import "PoiPair.h"
 
+static NSDate *sNetworkRequestBeginTime;
 
 @interface PlanPlanDetailViewController ()
 @property (nonatomic, strong) AMapSearchAPI *searchAPI;
@@ -105,6 +106,9 @@
         naviRequest.origin = [AMapGeoPoint locationWithLatitude:[origin.latitude floatValue] longitude:[origin.longitude floatValue]];
         naviRequest.destination = [AMapGeoPoint locationWithLatitude:[destination.latitude floatValue] longitude:[destination.longitude floatValue]];
         naviRequest.city = @"shanghai";
+        if (nil == sNetworkRequestBeginTime) {
+            sNetworkRequestBeginTime = [NSDate date];
+        }
         [self.searchAPI AMapNavigationSearch:naviRequest];
     }
 }
@@ -187,19 +191,34 @@
         [self calculateRoutes:nil];
     }
     else {
+        NSDate *networkFinishTime = [NSDate date];
+        NSLog(@"网络请求耗时：%f秒", [networkFinishTime timeIntervalSinceDate: sNetworkRequestBeginTime]);
+        sNetworkRequestBeginTime = nil;
+        
         [Utils hideProgressHUD:self];
-        [Utils enumTSPWithCompletionHandler:^(NSArray *solution) {
-            //根据solution的内容，重新排列table中cell的顺序
-            NSOrderedSet *oldSet = self.travelPlan.pois;
-            NSMutableOrderedSet *newSet = [[NSMutableOrderedSet alloc] init];
-            for (int i = 0; i < p_poisGraph->vertexNumber; i++) {
-                [newSet addObject:[oldSet objectAtIndex:[[solution objectAtIndex:i] integerValue]]];
-            }
-            
-            self.travelPlan.pois = newSet;
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationMiddle];
-        }];
+        if (self.travelPlan.pois.count <= 10) {
+            [Utils enumTSPWithCompletionHandler:^(NSArray *solution) {
+                [self rearrangeCellsWithSolution:solution];
+            }];
+        }
+        else {
+            [Utils SimulateAnnealTSPWithCompletionHandler:^(NSArray *solution) {
+                [self rearrangeCellsWithSolution:solution];
+            }];
+        }
     }
+}
+
+- (void)rearrangeCellsWithSolution:(NSArray *)solution {
+    //根据solution的内容，重新排列table中cell的顺序
+    NSOrderedSet *oldSet = self.travelPlan.pois;
+    NSMutableOrderedSet *newSet = [[NSMutableOrderedSet alloc] init];
+    for (int i = 0; i < p_poisGraph->vertexNumber; i++) {
+        [newSet addObject:[oldSet objectAtIndex:[[solution objectAtIndex:i] integerValue]]];
+    }
+    
+    self.travelPlan.pois = newSet;
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationMiddle];
 }
 
 #pragma mark - UIAlertViewDelegate

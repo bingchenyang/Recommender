@@ -7,6 +7,7 @@
 //
 
 #import "TourNaviDescriptionViewController.h"
+#import "TourPoiPairSelectViewController.h"
 #import "Utils.h"
 #import "TourTransitCell.h"
 
@@ -180,5 +181,14 @@
 }
 
  */
+
+
+#pragma mark
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toTourPoiPairSelectView"]) {
+        TourPoiPairSelectViewController *tppsVC = segue.destinationViewController;
+        tppsVC.pois = self.pois;
+    }
+}
 
 @end
